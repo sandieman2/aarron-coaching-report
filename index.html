@@ -605,6 +605,63 @@
     }
 
     /* ===========================
+       Action Plan / Checklist
+       =========================== */
+    .checklist-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #5A06CB;
+      margin: 22px 0 10px;
+    }
+
+    .checklist-category:first-of-type { margin-top: 4px; }
+
+    .checklist-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+    }
+
+    .checklist-item:hover { background: var(--polar); }
+
+    .checklist-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: #0091f2;
+      cursor: pointer;
+    }
+
+    .checklist-item label {
+      font-size: 13px;
+      color: var(--charcoal);
+      line-height: 1.55;
+      cursor: pointer;
+    }
+
+    .checklist-footer {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: #efe9fd;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #4a0da0;
+      font-weight: 500;
+    }
+
+    /* ===========================
        Section spacing
        =========================== */
     .section { margin-bottom: 28px; }
@@ -970,33 +1027,37 @@
         </div>
       </div>
 
+      <p style="font-size: 14px; color: var(--slate); margin-bottom: 20px; line-height: 1.7;">
+        We kicked off on <strong>April 8</strong> with a 1:1 video call (Apr 10) and spent the rest of the month inside <strong>10 personalized video reviews</strong>. Key themes: <strong>retention graphs &amp; CTR data</strong> (I had you screenshot those from Studio for each video), <strong>intro hook engineering</strong> (studied Mark Rober's storytelling structure together), <strong>thumbnail strategy</strong> (crafting for <em>new</em> viewers, not current subscribers), and understanding your <strong>TV-dominant audience</strong> (46% TV vs 25% mobile — production quality matters even more for your viewers).
+      </p>
+
       <div class="insight-grid">
 
         <div class="insight-block">
-          <div class="insight-title">🎬 Video Review Focus</div>
+          <div class="insight-title">🎬 You're implementing fast</div>
           <div class="insight-body">
-            Anthony delivered <strong>10 personalized video reviews</strong> this month, focusing on intro hooks, storytelling structure, and pacing. The key theme: your footage is incredible, but the <em>narrative framing</em> is what turns views into subscribers. You've already started implementing this — the jet truck race intro hook on your upcoming video shows real progress.
+            After we studied Mark Rober's hook structure together on April 14 (<em>"These 500 drones, I programmed with one vision in mind…"</em>), you came back two days later with: <em>"Our next video has that heads up in the Intro hook. I start by saying this airshow is all about the race, the vendetta I have against a jet truck."</em> That's the exact narrative framing we discussed. You made edits, asked for a green light, and posted within the week. <strong>Review → implement → publish</strong> is the cycle that accelerates growth, and you're already there.
           </div>
         </div>
 
         <div class="insight-block">
-          <div class="insight-title">📈 Explosive Growth</div>
+          <div class="insight-title">📺 Your TV audience changes the game</div>
           <div class="insight-body">
-            Three subscriber milestones in a single month (<strong>18K → 19K → 20K</strong>) is remarkable, especially for a channel that was at 13K just 90 days ago. The Cleetus McFarland collaboration (57K views) proved that your content resonates far beyond the aviation niche when paired with the right cross-audience opportunity.
+            A standout finding from our analytics review: <strong>46% of your viewers watch on TV, vs 25% mobile</strong>. As I told you: <em>"This means you are at the level of Mr. Beast, Ryan Trahan. Your production always has to be incredible."</em> Most creators skew mobile-first. Your TV-heavy audience means every frame of your airshow footage is being seen on big screens — which is a massive advantage <em>if</em> production quality stays high. It also explains why the raw 35-min cockpit POV underperformed.
           </div>
         </div>
 
         <div class="insight-block">
-          <div class="insight-title">🎯 Implementing Feedback</div>
+          <div class="insight-title">🖼️ Thumbnails: craft for strangers, not fans</div>
           <div class="insight-body">
-            What stands out most this month is <strong>how quickly you're putting coaching into action</strong>. After reviewing your content and sharing reference examples, you came back within days with revised intro hooks and structural edits before posting. That feedback loop — review, implement, publish — is exactly the cycle that accelerates growth.
+            From my April 20 review: <em>"The thumbnail didn't do the video justice. I see Corvette and then I see you in a cockpit, but we always have to craft thumbnails not for your current subscribers who know what you're doing — we need to craft thumbnails and titles around people who have no idea."</em> This is the #1 lever for your long-form. Your Shorts already hook with curiosity (<em>"Can you guess what the guy with the light gun is doing?"</em>). Apply that same stranger-first thinking to every long-form thumbnail.
           </div>
         </div>
 
         <div class="insight-block">
-          <div class="insight-title">✈️ Your Unique Advantage</div>
+          <div class="insight-title">✈️ Production quality is your moat</div>
           <div class="insight-body">
-            Very few creators have your combination: <strong>world-class skill + genuine access to extraordinary experiences + natural on-camera energy</strong>. The goal isn't to become a "YouTube creator who flies planes" — it's to be an airshow pilot who happens to make the best aviation content on the platform. Keep that authentic energy.
+            From my very first review: <em>"I took a look at your channel and it is effing cool. Something that a lot of people can't replicate, it's super unique."</em> That's still true. <strong>The video quality and the production is there.</strong> Nobody else on YouTube is shooting from the cockpit of an Extra 330SC at airshows. Your job isn't to compete with other creators on editing tricks — it's to frame your one-of-a-kind footage with hooks, stories, and thumbnails that make strangers click. The footage does the rest.
           </div>
         </div>
 
@@ -1044,6 +1105,85 @@
         ✏️ <span>This section is editable by your coach before delivery.</span>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ===========================
+       6. MAY ACTION PLAN
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Action Plan</p>
+    <div class="card">
+      <div class="card-title">✅ Your May Action Plan</div>
+      <p style="font-size: 13px; color: var(--slate); margin-bottom: 6px;">Check these off as you go — your coach will review at your next session</p>
+
+      <p class="checklist-category">📹 Content Production</p>
+      <div class="checklist-list">
+        <div class="checklist-item">
+          <input type="checkbox" id="c1" />
+          <label for="c1">Publish 4 long-form videos (1/week) — each between 10–18 minutes with a narrative arc, not raw footage.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c2" />
+          <label for="c2">Publish 20+ Shorts (5/week minimum). You hit 29 in April — maintain or exceed that pace.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c3" />
+          <label for="c3">Write a hook for each long-form video BEFORE editing. Share it with Anthony for feedback before you publish. Template: answer "Why should I watch THIS?" in the first 10 seconds.</label>
+        </div>
+      </div>
+
+      <p class="checklist-category">🖼️ Thumbnails &amp; Packaging</p>
+      <div class="checklist-list">
+        <div class="checklist-item">
+          <input type="checkbox" id="c4" />
+          <label for="c4">A/B test thumbnails on your next 2 long-form videos. Create 2 options for each and let data pick the winner.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c5" />
+          <label for="c5">Apply the "stranger test" to every thumbnail. Before uploading, ask: "Would someone who's never heard of me click this?" If not — redesign it.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c6" />
+          <label for="c6">Add text overlays to at least 3 Shorts this month. Test curiosity-gap captions in the first 2 seconds (like the Blue Angels light gun Short).</label>
+        </div>
+      </div>
+
+      <p class="checklist-category">🤝 Growth &amp; Collaboration</p>
+      <div class="checklist-list">
+        <div class="checklist-item">
+          <input type="checkbox" id="c7" />
+          <label for="c7">Reach out to 3 creators in adjacent niches (automotive, extreme sports, military) for a potential May collab. DM or email at least 3 by May 15.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c8" />
+          <label for="c8">Film and publish at least 1 collaboration video in May. The Cleetus collab did 57K views — repeat that playbook.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c9" />
+          <label for="c9">Add end screens to all 4 long-form videos. Use the template Anthony showed you — best-for-viewer + subscribe combo.</label>
+        </div>
+      </div>
+
+      <p class="checklist-category">📊 Analytics &amp; Coaching</p>
+      <div class="checklist-list">
+        <div class="checklist-item">
+          <input type="checkbox" id="c10" />
+          <label for="c10">Screenshot your retention graph + CTR/impressions for each new long-form video after 48 hours and share with Anthony in chat.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c11" />
+          <label for="c11">Check your new-vs-returning viewer ratio in YouTube Studio → Audience tab. Report back to Anthony by May 20.</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="c12" />
+          <label for="c12">Hit 22,000 subscribers by end of May. You're at 20K and gaining ~650/week — this is very achievable.</label>
+        </div>
+      </div>
+
+      <div class="checklist-footer">
+        💬 Check in with Anthony after completing each item — or anytime you need feedback before posting.
+      </div>
     </div>
   </section>
 
