@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vidIQ Coaching Report — Aarron Deliu · April 2026</title>
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===========================
+       vidIQ Supernova Design System
+       =========================== */
+    :root {
+      /* Brand */
+      --blue:        #0091f2;
+      --amethyst:    #7558e8;
+      --gradient:    linear-gradient(115deg, #0979FF 0%, #5A06CB 100%);
+
+      /* Semantic */
+      --green:       #00b257;
+      --red:         #d6405e;
+      --yellow:      #f2b900;
+
+      /* Surfaces */
+      --eclipse:     #0a0d15;
+      --charcoal:    #161922;
+      --midnight:    #2a2e3b;
+      --slate:       #3d424e;
+      --cloud:       #eceef3;
+      --polar:       #f5f6fa;
+      --white:       #ffffff;
+      --fog:         #d7dbe5;
+      --frost:       #ccd0db;
+
+      /* Typography */
+      --font:        'Satoshi', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--polar);
+      color: var(--charcoal);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       Header
+       =========================== */
+    .header {
+      background: var(--gradient);
+      padding: 28px 32px 24px;
+      color: white;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text .coaching-suffix {
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .header-meta {
+      text-align: right;
+    }
+
+    .header-meta .creator-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .header-meta .period {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    /* Divider */
+    .header-divider {
+      background: var(--gradient);
+      height: 4px;
+    }
+
+    /* ===========================
+       Main layout
+       =========================== */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ===========================
+       Section labels
+       =========================== */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    /* ===========================
+       Cards
+       =========================== */
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(10,13,21,0.07), 0 4px 16px rgba(10,13,21,0.05);
+      border: 1px solid var(--fog);
+    }
+
+    .card + .card { margin-top: 20px; }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--eclipse);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===========================
+       Month at a Glance
+       =========================== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+    }
+
+    .stat-tile {
+      background: var(--polar);
+      border: 1px solid var(--fog);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-tile .stat-value {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--eclipse);
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .stat-tile .stat-label {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .stat-tile .stat-delta {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .stat-delta.up {
+      background: #e6f9ef;
+      color: var(--green);
+    }
+
+    .stat-delta.down {
+      background: #fce9ed;
+      color: var(--red);
+    }
+
+    .stat-delta.neutral {
+      background: var(--cloud);
+      color: var(--slate);
+    }
+
+    /* ===========================
+       Goal Progress
+       =========================== */
+    .goal-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .goal-item {}
+
+    .goal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .goal-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--eclipse);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .goal-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    .goal-bar-track {
+      height: 8px;
+      background: var(--cloud);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .goal-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--gradient);
+      transition: width 0.6s ease;
+    }
+
+    .goal-bar-fill.green  { background: var(--green); }
+    .goal-bar-fill.yellow { background: var(--yellow); }
+    .goal-bar-fill.red    { background: var(--red); }
+
+    .goal-note {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 5px;
+    }
+
+    /* ===========================
+       Milestone badges
+       =========================== */
+    .milestone-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .milestone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--polar);
+      border: 1px solid var(--fog);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--eclipse);
+    }
+
+    .milestone-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    /* ===========================
+       Video Performance Table
+       =========================== */
+    .video-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .video-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--slate);
+      padding: 0 12px 10px;
+      border-bottom: 1px solid var(--fog);
+    }
+
+    .video-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--cloud);
+      vertical-align: middle;
+    }
+
+    .video-table tr:last-child td { border-bottom: none; }
+
+    .video-table tr:hover td { background: var(--polar); }
+
+    .video-title-cell {
+      max-width: 300px;
+    }
+
+    .video-title {
+      font-weight: 600;
+      color: var(--eclipse);
+      line-height: 1.3;
+    }
+
+    .video-type-badge {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .video-type-badge.short {
+      background: #efe9fd;
+      color: var(--amethyst);
+    }
+
+    .video-type-badge.long {
+      background: #e0f2fd;
+      color: var(--blue);
+    }
+
+    .views-num {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--eclipse);
+    }
+
+    .views-star { color: var(--yellow); }
+
+    .ctr-pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .ctr-pill.high {
+      background: #e6f9ef;
+      color: var(--green);
+    }
+
+    .ctr-pill.med {
+      background: #fff8e0;
+      color: #a07a00;
+    }
+
+    .ctr-pill.low {
+      background: #fce9ed;
+      color: var(--red);
+    }
+
+    /* ===========================
+       Impressions & CTR section
+       =========================== */
+    .imp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 560px) {
+      .imp-grid { grid-template-columns: 1fr; }
+    }
+
+    .imp-tile {
+      background: var(--polar);
+      border: 1px solid var(--fog);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+
+    .imp-tile .imp-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .imp-tile .imp-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--eclipse);
+      letter-spacing: -0.8px;
+      margin-top: 4px;
+    }
+
+    .imp-tile .imp-context {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 4px;
+    }
+
+    .imp-chart-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .imp-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .imp-bar-label {
+      width: 80px;
+      color: var(--slate);
+      font-weight: 500;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .imp-bar-track {
+      flex: 1;
+      height: 6px;
+      background: var(--cloud);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .imp-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    .imp-bar-fill.blue { background: var(--blue); }
+    .imp-bar-fill.purple { background: var(--amethyst); }
+    .imp-bar-fill.green { background: var(--green); }
+
+    .imp-bar-val {
+      width: 32px;
+      text-align: right;
+      font-weight: 600;
+      color: var(--eclipse);
+      font-size: 11px;
+    }
+
+    /* ===========================
+       Coach's Notes section
+       =========================== */
+    .coach-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .coach-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .coach-info .coach-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--eclipse);
+    }
+
+    .coach-info .coach-subtitle {
+      font-size: 13px;
+      color: var(--slate);
+      margin-top: 1px;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .insight-grid { grid-template-columns: 1fr; }
+    }
+
+    .insight-block {
+      background: var(--polar);
+      border: 1px solid var(--fog);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .insight-block .insight-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--eclipse);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .insight-block .insight-body {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    /* Focus areas */
+    .focus-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--eclipse);
+      margin-bottom: 12px;
+    }
+
+    .focus-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .focus-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--polar);
+      border: 1px solid var(--fog);
+      border-radius: 10px;
+      padding: 13px 16px;
+    }
+
+    .focus-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .focus-text .focus-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--eclipse);
+    }
+
+    .focus-text .focus-desc {
+      font-size: 12px;
+      color: var(--slate);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    /* Editable note banner */
+    .editable-note {
+      margin-top: 20px;
+      background: #fff8e0;
+      border: 1px solid #f2d96a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #7a5c00;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* ===========================
+       Section spacing
+       =========================== */
+    .section { margin-bottom: 28px; }
+
+    /* ===========================
+       Footer
+       =========================== */
+    .footer {
+      border-top: 1px solid var(--fog);
+      margin-top: 40px;
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--slate);
+    }
+
+    /* ===========================
+       Responsive
+       =========================== */
+    @media (max-width: 640px) {
+      .header { padding: 20px; }
+      .header-meta .creator-name { font-size: 17px; }
+      .main { padding: 20px 14px 48px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .video-table { font-size: 12px; }
+      .video-table th, .video-table td { padding: 10px 8px; }
+      .video-title-cell { max-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =====================
+     HEADER
+     ===================== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-text">
+        vidIQ<span class="coaching-suffix"> Coaching</span>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="creator-name">Aarron Deliu</div>
+      <div class="period">April 2026 Monthly Report</div>
+    </div>
+  </div>
+</header>
+<div class="header-divider"></div>
+
+<!-- =====================
+     MAIN
+     ===================== -->
+<main class="main">
+
+  <!-- ===========================
+       1. MONTH AT A GLANCE
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Month at a Glance</p>
+    <div class="card">
+      <div class="card-title">📊 April 2026 Overview</div>
+      <div class="stats-grid">
+
+        <div class="stat-tile">
+          <div class="stat-value">+3K</div>
+          <div class="stat-label">New Subscribers</div>
+          <span class="stat-delta up">↑ 17.6%</span>
+        </div>
+
+        <div class="stat-tile">
+          <div class="stat-value">20K</div>
+          <div class="stat-label">Total Subscribers</div>
+          <span class="stat-delta up">↑ milestone hit</span>
+        </div>
+
+        <div class="stat-tile">
+          <div class="stat-value">74K</div>
+          <div class="stat-label">Total Views</div>
+          <span class="stat-delta up">↑ record month</span>
+        </div>
+
+        <div class="stat-tile">
+          <div class="stat-value">57K</div>
+          <div class="stat-label">Top Video Views</div>
+          <span class="stat-delta up">↑ collab win</span>
+        </div>
+
+        <div class="stat-tile">
+          <div class="stat-value">14</div>
+          <div class="stat-label">Videos Published</div>
+          <span class="stat-delta neutral">— on pace</span>
+        </div>
+
+        <div class="stat-tile">
+          <div class="stat-value">4.8%</div>
+          <div class="stat-label">Avg CTR</div>
+          <span class="stat-delta up">↑ +0.9%</span>
+        </div>
+
+      </div>
+
+      <div class="milestone-row">
+        <div class="milestone-badge"><span class="dot"></span> 18K Subs — Apr 9</div>
+        <div class="milestone-badge"><span class="dot"></span> 19K Subs — Apr 18</div>
+        <div class="milestone-badge"><span class="dot"></span> 20K Subs — May 4</div>
+        <div class="milestone-badge"><span class="dot"></span> Coaching started — Apr 8</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       2. GOAL PROGRESS
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Goal Progress</p>
+    <div class="card">
+      <div class="card-title">🎯 30-Day Goals</div>
+      <div class="goal-list">
+
+        <div class="goal-item">
+          <div class="goal-header">
+            <span class="goal-name">🚀 Subscriber Growth (Target: 20K)</span>
+            <span class="goal-value">20,047 / 20,000</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill green" style="width: 100%"></div>
+          </div>
+          <div class="goal-note">✅ Reached! Three milestone badges in a single month — 17K → 20K in 26 days.</div>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-header">
+            <span class="goal-name">🎬 Videos Published (Target: 12)</span>
+            <span class="goal-value">14 / 12</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill green" style="width: 100%"></div>
+          </div>
+          <div class="goal-note">✅ Exceeded! Mix of long-form (4), Shorts (10). Collab with Cleetus McFarland was the standout.</div>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-header">
+            <span class="goal-name">📝 Coaching Touchpoints (Target: 4)</span>
+            <span class="goal-value">10+ / 4</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill green" style="width: 100%"></div>
+          </div>
+          <div class="goal-note">✅ Crushed it! Anthony delivered 10+ personalized video reviews. You implemented feedback before every publish.</div>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-header">
+            <span class="goal-name">📈 Average Views Per Video (Target: 3K)</span>
+            <span class="goal-value">~5.3K / 3K avg</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill green" style="width: 100%"></div>
+          </div>
+          <div class="goal-note">✅ Driven by the Cleetus collab (57K), Shorts averaging 4–5K each. Excluding the outlier: ~2.4K avg on long-form — room to grow.</div>
+        </div>
+
+        <div class="goal-item">
+          <div class="goal-header">
+            <span class="goal-name">🔗 Collaborations (Target: 1)</span>
+            <span class="goal-value">1 / 1</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill green" style="width: 100%"></div>
+          </div>
+          <div class="goal-note">✅ Cleetus McFarland collab: 57K views. Proven that cross-niche collabs (automotive + aviation) unlock massive audiences.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       3. VIDEO PERFORMANCE
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Video Performance</p>
+    <div class="card">
+      <div class="card-title">🎥 Top Videos — April 2026</div>
+      <div style="overflow-x: auto;">
+        <table class="video-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Views</th>
+              <th>CTR</th>
+              <th>Avg View Duration</th>
+              <th>Subs Gained</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">Cleetus McFarland vs. Airshow Pilot <span class="views-star">★</span></div>
+                <span class="video-type-badge long">Long-form</span>
+              </td>
+              <td><span class="views-num">57,284</span></td>
+              <td><span class="ctr-pill high">8.2%</span></td>
+              <td>7m 12s</td>
+              <td>+1,840</td>
+            </tr>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">POV: Race Pilot at 250mph (Hook Cut)</div>
+                <span class="video-type-badge short">Short</span>
+              </td>
+              <td><span class="views-num">15,100</span></td>
+              <td><span class="ctr-pill high">6.8%</span></td>
+              <td>0m 42s</td>
+              <td>+310</td>
+            </tr>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">The Jet Truck Vendetta — Race Day Story</div>
+                <span class="video-type-badge long">Long-form</span>
+              </td>
+              <td><span class="views-num">4,920</span></td>
+              <td><span class="ctr-pill med">4.3%</span></td>
+              <td>6m 38s</td>
+              <td>+390</td>
+            </tr>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">Aerobatics: What the Crowd Can't See</div>
+                <span class="video-type-badge short">Short</span>
+              </td>
+              <td><span class="views-num">4,670</span></td>
+              <td><span class="ctr-pill med">4.1%</span></td>
+              <td>0m 38s</td>
+              <td>+88</td>
+            </tr>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">Behind the Scenes: World Aerobatics Championships</div>
+                <span class="video-type-badge long">Long-form</span>
+              </td>
+              <td><span class="views-num">3,200</span></td>
+              <td><span class="ctr-pill med">3.9%</span></td>
+              <td>9m 55s</td>
+              <td>+215</td>
+            </tr>
+            <tr>
+              <td class="video-title-cell">
+                <div class="video-title">35-Min Cockpit POV — Full Race</div>
+                <span class="video-type-badge long">Long-form</span>
+              </td>
+              <td><span class="views-num">37</span></td>
+              <td><span class="ctr-pill low">0.6%</span></td>
+              <td>4m 12s</td>
+              <td>+2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 14px; padding: 12px 14px; background: #e0f2fd; border-radius: 8px; font-size: 12px; color: #004a7a;">
+        💡 <strong>Key insight:</strong> The Cleetus collab (11:42 story-driven) dramatically outperformed the 35-min cockpit POV (37 views). Story + narrative wins every time over raw footage length.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       4. IMPRESSIONS & CTR
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Impressions &amp; CTR</p>
+    <div class="card">
+      <div class="card-title">📡 Discovery Performance</div>
+      <div class="imp-grid">
+
+        <div class="imp-tile">
+          <div class="imp-label">Total Impressions</div>
+          <div class="imp-value">1.54M</div>
+          <div class="imp-context">+38% vs March 2026</div>
+        </div>
+
+        <div class="imp-tile">
+          <div class="imp-label">Overall CTR</div>
+          <div class="imp-value">4.8%</div>
+          <div class="imp-context">YouTube avg is 2–5%. You're right at the ceiling.</div>
+        </div>
+
+        <div class="imp-tile">
+          <div class="imp-label">Impressions by Source</div>
+          <div class="imp-chart-bar">
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Browse</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill blue" style="width:62%"></div></div>
+              <span class="imp-bar-val">62%</span>
+            </div>
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Suggested</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill purple" style="width:24%"></div></div>
+              <span class="imp-bar-val">24%</span>
+            </div>
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Search</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill green" style="width:14%"></div></div>
+              <span class="imp-bar-val">14%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="imp-tile">
+          <div class="imp-label">CTR by Content Type</div>
+          <div class="imp-chart-bar">
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Collabs</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill blue" style="width:82%"></div></div>
+              <span class="imp-bar-val">8.2%</span>
+            </div>
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Shorts</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill purple" style="width:60%"></div></div>
+              <span class="imp-bar-val">6.0%</span>
+            </div>
+            <div class="imp-bar-row">
+              <span class="imp-bar-label">Long-form</span>
+              <div class="imp-bar-track"><div class="imp-bar-fill green" style="width:43%"></div></div>
+              <span class="imp-bar-val">4.3%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       5. COACH'S NOTES
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Coach's Notes</p>
+    <div class="card">
+
+      <div class="coach-header">
+        <div class="coach-avatar">A</div>
+        <div class="coach-info">
+          <div class="coach-name">Coach's Notes — Anthony O</div>
+          <div class="coach-subtitle">vidIQ Creator Coach · Aviation Growth Specialist</div>
+        </div>
+      </div>
+
+      <div class="insight-grid">
+
+        <div class="insight-block">
+          <div class="insight-title">🎬 Video Review Focus</div>
+          <div class="insight-body">
+            Anthony delivered <strong>10 personalized video reviews</strong> this month, focusing on intro hooks, storytelling structure, and pacing. The key theme: your footage is incredible, but the <em>narrative framing</em> is what turns views into subscribers. You've already started implementing this — the jet truck race intro hook on your upcoming video shows real progress.
+          </div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">📈 Explosive Growth</div>
+          <div class="insight-body">
+            Three subscriber milestones in a single month (<strong>18K → 19K → 20K</strong>) is remarkable, especially for a channel that was at 13K just 90 days ago. The Cleetus McFarland collaboration (57K views) proved that your content resonates far beyond the aviation niche when paired with the right cross-audience opportunity.
+          </div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">🎯 Implementing Feedback</div>
+          <div class="insight-body">
+            What stands out most this month is <strong>how quickly you're putting coaching into action</strong>. After reviewing your content and sharing reference examples, you came back within days with revised intro hooks and structural edits before posting. That feedback loop — review, implement, publish — is exactly the cycle that accelerates growth.
+          </div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">✈️ Your Unique Advantage</div>
+          <div class="insight-body">
+            Very few creators have your combination: <strong>world-class skill + genuine access to extraordinary experiences + natural on-camera energy</strong>. The goal isn't to become a "YouTube creator who flies planes" — it's to be an airshow pilot who happens to make the best aviation content on the platform. Keep that authentic energy.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- May Focus Areas -->
+      <div class="focus-label">🗓️ May 2026 Focus Areas</div>
+      <div class="focus-list">
+
+        <div class="focus-item">
+          <div class="focus-num">1</div>
+          <div class="focus-text">
+            <div class="focus-title">Hook Engineering</div>
+            <div class="focus-desc">Continue refining intro hooks. Every video should answer "why should I watch THIS?" within the first 10 seconds. The jet truck vendetta angle was a great example — build on that pattern.</div>
+          </div>
+        </div>
+
+        <div class="focus-item">
+          <div class="focus-num">2</div>
+          <div class="focus-text">
+            <div class="focus-title">Long-Form Storytelling</div>
+            <div class="focus-desc">Your shorter, story-driven videos (Cleetus collab at 11:42) dramatically outperform longer raw footage (35-min cockpit POV at 37 views). Target 12–18 minute videos with clear narrative arcs.</div>
+          </div>
+        </div>
+
+        <div class="focus-item">
+          <div class="focus-num">3</div>
+          <div class="focus-text">
+            <div class="focus-title">Collaboration Pipeline</div>
+            <div class="focus-desc">The Cleetus collab generated 57K views vs your typical 1–2K. Identify 2–3 creators in adjacent niches (automotive, extreme sports, military) for May collabs. One big collab per month changes the trajectory.</div>
+          </div>
+        </div>
+
+        <div class="focus-item">
+          <div class="focus-num">4</div>
+          <div class="focus-text">
+            <div class="focus-title">Shorts Optimization</div>
+            <div class="focus-desc">Your Shorts are performing well (avg 4–5K views, some hitting 15K). Experiment with text overlays and stronger 1-second hooks to push the top end higher. One breakout Short could drive a sub surge.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="editable-note">
+        ✏️ <span>This section is editable by your coach before delivery.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-brand">vidIQ Coaching</span>
+    <span class="footer-text">April 2026 · Aarron Deliu · Confidential</span>
+  </div>
+
+</main>
+</body>
+</html>
