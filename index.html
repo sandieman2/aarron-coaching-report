@@ -9,6 +9,56 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     /* ===========================
+       Coach Edit Mode
+       =========================== */
+    .edit-toolbar {
+      position: sticky; top: 0; z-index: 100;
+      background: linear-gradient(115deg, #0979FF 0%, #5A06CB 100%);
+      padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .edit-toolbar.hidden { display: none; }
+    .edit-toolbar-left { display: flex; align-items: center; gap: 12px; }
+    .edit-toolbar-label { color: white; font-family: var(--font); font-size: 14px; font-weight: 600; }
+    .edit-toolbar-hint { color: rgba(255,255,255,.7); font-family: var(--font); font-size: 12px; }
+    .btn-approve {
+      background: #00b257; color: white; border: none; border-radius: 8px;
+      padding: 8px 20px; font-family: var(--font); font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: background .15s;
+    }
+    .btn-approve:hover { background: #009e4d; }
+    /* Section toggle */
+    .section-toggle {
+      position: absolute; top: 8px; right: 8px; z-index: 10;
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(0,0,0,.04); border-radius: 6px; padding: 4px 10px;
+      font-size: 11px; font-weight: 600; color: var(--slate); cursor: pointer;
+      user-select: none;
+    }
+    .section-toggle input { accent-color: #5A06CB; width: 14px; height: 14px; cursor: pointer; }
+    .section { position: relative; }
+    .section.edit-hidden .card { opacity: 0.3; pointer-events: none; }
+    .section.edit-hidden .section-toggle { opacity: 1; pointer-events: all; }
+    .section.edit-hidden::after {
+      content: 'Hidden from creator'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); background: rgba(0,0,0,.7); color: white;
+      padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+      pointer-events: none; z-index: 5;
+    }
+    /* Editable highlights */
+    body.edit-mode [contenteditable="true"]:hover {
+      outline: 2px dashed rgba(90,6,203,.3); outline-offset: 2px; border-radius: 4px;
+    }
+    body.edit-mode [contenteditable="true"]:focus {
+      outline: 2px solid #5A06CB; outline-offset: 2px; border-radius: 4px;
+      background: rgba(90,6,203,.03);
+    }
+    body:not(.edit-mode) .section-toggle { display: none; }
+    body:not(.edit-mode) .edit-toolbar { display: none; }
+
+    /* ===========================
        vidIQ Supernova Design System
        =========================== */
     :root {
@@ -718,6 +768,17 @@
 <body>
 
 <!-- =====================
+     EDIT TOOLBAR (visible in preview mode only)
+     ===================== -->
+<div class="edit-toolbar" id="editToolbar">
+  <div class="edit-toolbar-left">
+    <div class="edit-toolbar-label">📝 Coach Preview Mode</div>
+    <div class="edit-toolbar-hint">Click any text to edit · Toggle sections on/off · Hit Approve when ready</div>
+  </div>
+  <button class="btn-approve" id="btnApprove" onclick="approveReport()">✅ Approve &amp; Finalize</button>
+</div>
+
+<!-- =====================
      HEADER
      ===================== -->
 <header class="header">
@@ -1414,6 +1475,88 @@
       plugins: [coachingMarkerPlugin]
     });
   })();
+</script>
+
+<script>
+  // ===========================
+  // Coach Edit Mode
+  // ===========================
+  (function () {
+    // Activate edit mode via ?edit=1 or ?preview=1 in the URL
+    var params = new URLSearchParams(window.location.search);
+    var isEditMode = params.has('edit') || params.has('preview');
+    if (!isEditMode) return;
+
+    document.body.classList.add('edit-mode');
+
+    // Add toggle switches to each section
+    document.querySelectorAll('.section').forEach(function (section, i) {
+      var label = section.querySelector('.section-label');
+      var sectionName = label ? label.textContent.trim() : 'Section ' + (i + 1);
+
+      var toggle = document.createElement('label');
+      toggle.className = 'section-toggle';
+      toggle.innerHTML = '<input type="checkbox" checked data-section="' + i + '"> Show';
+      section.appendChild(toggle);
+
+      toggle.querySelector('input').addEventListener('change', function () {
+        if (this.checked) {
+          section.classList.remove('edit-hidden');
+        } else {
+          section.classList.add('edit-hidden');
+        }
+      });
+    });
+
+    // Make text elements editable
+    var editableSelectors = [
+      '.goal-note', '.insight-body', '.insight-title',
+      '.focus-title', '.focus-desc', '.checklist-item label',
+      '.coach-header .coach-subtitle',
+      '.card > p', '.card-title',
+      '.checklist-category', '.checklist-footer'
+    ];
+
+    editableSelectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'true');
+      });
+    });
+
+    // Also make the viewer experience narrative editable
+    document.querySelectorAll('.vex-grid p, [style*="one-line read"] + p').forEach(function (el) {
+      el.setAttribute('contenteditable', 'true');
+    });
+  })();
+
+  function approveReport() {
+    if (!confirm('Finalize this report? The creator will see exactly what\'s shown here (minus hidden sections).')) return;
+
+    // Remove edit mode
+    document.body.classList.remove('edit-mode');
+
+    // Remove hidden sections entirely
+    document.querySelectorAll('.section.edit-hidden').forEach(function (s) { s.remove(); });
+
+    // Remove toggle switches
+    document.querySelectorAll('.section-toggle').forEach(function (t) { t.remove(); });
+
+    // Remove contenteditable
+    document.querySelectorAll('[contenteditable]').forEach(function (el) {
+      el.removeAttribute('contenteditable');
+      el.removeAttribute('spellcheck');
+    });
+
+    // Hide toolbar
+    document.getElementById('editToolbar').style.display = 'none';
+
+    // Clean URL
+    var cleanUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, '', cleanUrl);
+
+    alert('Report finalized! Share this page with the creator.');
+  }
 </script>
 
 </body>
