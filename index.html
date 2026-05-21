@@ -73,6 +73,14 @@
       text-align: center; padding: 0;
     }
     .edit-delete-btn:hover { background: #fecaca; }
+    .edit-add-goal {
+      display: block; width: 100%; margin-top: 10px; padding: 10px;
+      background: rgba(90,6,203,.06); border: 1.5px dashed rgba(90,6,203,.25);
+      border-radius: 8px; color: #5A06CB; font-family: var(--font);
+      font-size: 12px; font-weight: 600; cursor: pointer; text-align: center;
+    }
+    .edit-add-goal:hover { background: rgba(90,6,203,.12); }
+    body:not(.edit-mode) .edit-add-goal { display: none; }
 
     /* ===========================
        vidIQ Supernova Design System
@@ -824,6 +832,19 @@
      MAIN
      ===================== -->
 <main class="main">
+
+  <!-- ===========================
+       0. EXECUTIVE SUMMARY
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Executive Summary</p>
+    <div class="card" style="border-left:4px solid #5A06CB;">
+      <div class="card-title">✨ April 2026 — Monthly Summary</div>
+      <p style="font-size:14.5px; color:var(--charcoal); line-height:1.7; margin-bottom:0;">
+        <strong>April was a breakout month for Aarron.</strong> He crossed 20K subscribers (up from 17K when coaching started on Apr 8), published 14 videos, and landed a collaboration with Cleetus McFarland that pulled 57K views — 15× his typical long-form performance. The story-driven format is clearly the unlock: when Aarron wraps his footage in a narrative arc (question → journey → payoff), viewers click and stay. When he doesn't, even spectacular footage stalls (35-min cockpit POV: 37 views). Shorts are steady at 4–5K average. The focus for May: hook engineering on every long-form video, thumbnail redesign for strangers (not fans), and one more cross-niche collab to keep the growth trajectory going.
+      </p>
+    </div>
+  </section>
 
   <!-- ===========================
        1. MONTH AT A GLANCE
@@ -1603,6 +1624,62 @@
       item.style.position = 'relative';
       item.appendChild(btn);
     }
+
+    // --- Goal items: add/delete + live progress bar ---
+    document.querySelectorAll('.goal-item').forEach(function (item) {
+      item.style.position = 'relative';
+      addDeleteBtn(item);
+      var valEl = item.querySelector('.goal-value');
+      if (valEl) {
+        valEl.addEventListener('input', function () { updateGoalBar(item); });
+        valEl.addEventListener('blur', function () { updateGoalBar(item); });
+      }
+    });
+
+    function updateGoalBar(goalItem) {
+      var valEl = goalItem.querySelector('.goal-value');
+      var barFill = goalItem.querySelector('.goal-bar-fill');
+      if (!valEl || !barFill) return;
+      var text = valEl.textContent.replace(/,/g, '');
+      var parts = text.split('/');
+      if (parts.length !== 2) return;
+      var actual = parseFloat(parts[0].replace(/[^0-9.\-]/g, ''));
+      var target = parseFloat(parts[1].replace(/[^0-9.\-]/g, ''));
+      if (isNaN(actual) || isNaN(target) || target === 0) return;
+      var pct = Math.min(100, Math.max(0, (actual / target) * 100));
+      barFill.style.width = pct + '%';
+      barFill.className = 'goal-bar-fill';
+      if (pct >= 100) barFill.classList.add('green');
+      else if (pct < 50) barFill.style.background = '#f2b900';
+      else barFill.style.background = 'var(--blue)';
+    }
+
+    var goalList = document.querySelector('.goal-list');
+    if (goalList) {
+      var addGoalBtn = document.createElement('button');
+      addGoalBtn.className = 'edit-add-goal';
+      addGoalBtn.textContent = '+ Add goal';
+      addGoalBtn.onclick = function () {
+        var g = document.createElement('div');
+        g.className = 'goal-item';
+        g.style.position = 'relative';
+        g.innerHTML = '<div class="goal-header"><span class="goal-name" contenteditable="true" spellcheck="true">🎯 New Goal (Target: ?)</span><span class="goal-value" contenteditable="true">0 / 100</span></div><div class="goal-bar-track"><div class="goal-bar-fill" style="width:0%"></div></div><div class="goal-note" contenteditable="true" spellcheck="true">Click to add notes about this goal.</div>';
+        addDeleteBtn(g);
+        var v = g.querySelector('.goal-value');
+        v.addEventListener('input', function () { updateGoalBar(g); });
+        v.addEventListener('blur', function () { updateGoalBar(g); });
+        goalList.insertBefore(g, addGoalBtn);
+        g.querySelector('.goal-name').focus();
+      };
+      goalList.appendChild(addGoalBtn);
+    }
+
+    // --- Focus areas: delete buttons ---
+    document.querySelectorAll('.focus-item').forEach(function (item) {
+      item.style.position = 'relative';
+      addDeleteBtn(item);
+    });
+
   })();
 
   function approveReport() {
@@ -1615,7 +1692,7 @@
     document.querySelectorAll('.section.edit-hidden').forEach(function (s) { s.remove(); });
 
     // Remove toggle switches and edit buttons
-    document.querySelectorAll('.section-toggle, .edit-add-btn, .edit-delete-btn').forEach(function (t) { t.remove(); });
+    document.querySelectorAll('.section-toggle, .edit-add-btn, .edit-delete-btn, .edit-add-goal').forEach(function (t) { t.remove(); });
 
     // Remove contenteditable
     document.querySelectorAll('[contenteditable]').forEach(function (el) {
