@@ -57,6 +57,22 @@
     }
     body:not(.edit-mode) .section-toggle { display: none; }
     body:not(.edit-mode) .edit-toolbar { display: none; }
+    body:not(.edit-mode) .edit-add-btn { display: none; }
+    body:not(.edit-mode) .edit-delete-btn { display: none; }
+    .edit-add-btn {
+      display: block; width: 100%; margin-top: 8px; padding: 8px;
+      background: rgba(90,6,203,.06); border: 1.5px dashed rgba(90,6,203,.25);
+      border-radius: 8px; color: #5A06CB; font-family: var(--font);
+      font-size: 12px; font-weight: 600; cursor: pointer; text-align: center;
+    }
+    .edit-add-btn:hover { background: rgba(90,6,203,.12); }
+    .edit-delete-btn {
+      position: absolute; top: 4px; right: 4px; width: 22px; height: 22px;
+      background: #fee2e2; border: none; border-radius: 50%; color: #dc2626;
+      font-size: 14px; font-weight: 700; cursor: pointer; line-height: 22px;
+      text-align: center; padding: 0;
+    }
+    .edit-delete-btn:hover { background: #fecaca; }
 
     /* ===========================
        vidIQ Supernova Design System
@@ -1341,12 +1357,13 @@
     var ctx = document.getElementById('coachingProgressChart');
     if (!ctx) return;
 
+    // Only show completed months — no MTD partial data
     var chartData = {
-      labels: ['Oct \'25', 'Nov \'25', 'Dec \'25', 'Jan \'26', 'Feb \'26', 'Mar \'26', 'Apr \'26', 'May \'26 (MTD)'],
-      subs:  [14200, 14900, 15400, 15900, 16400, 17000, 20000, 20650],
-      views: [38000, 42000, 41000, 45000, 48000, 53000, 74000, 22000],
-      // Index of coaching kickoff (Apr 2026 = index 6)
-      coachingStartIndex: 6
+      labels: ['Oct \'25', 'Nov \'25', 'Dec \'25', 'Jan \'26', 'Feb \'26', 'Mar \'26', 'Apr \'26'],
+      subs:  [14200, 14900, 15400, 15900, 16400, 17000, 20000],
+      views: [38000, 42000, 41000, 45000, 48000, 53000, 74000],
+      // Coaching started Apr 8 — position between Mar and Apr (index 5.8 of 7)
+      coachingStartIndex: 5.8
     };
 
     var coachingX = chartData.coachingStartIndex;
@@ -1400,28 +1417,27 @@
             label: 'Subscribers',
             data: chartData.subs,
             borderColor: '#5A06CB',
-            backgroundColor: 'rgba(90, 6, 203, 0.08)',
+            backgroundColor: 'transparent',
             yAxisID: 'y',
             tension: 0.35,
             borderWidth: 2.5,
-            pointRadius: 3,
-            pointHoverRadius: 5,
+            pointRadius: 4,
+            pointHoverRadius: 6,
             pointBackgroundColor: '#5A06CB',
-            fill: true
+            fill: false
           },
           {
             label: 'Monthly views',
             data: chartData.views,
             borderColor: '#0091f2',
-            backgroundColor: 'rgba(0, 145, 242, 0.06)',
+            backgroundColor: 'transparent',
             yAxisID: 'y1',
             tension: 0.35,
             borderWidth: 2.5,
-            pointRadius: 3,
-            pointHoverRadius: 5,
+            pointRadius: 4,
+            pointHoverRadius: 6,
             pointBackgroundColor: '#0091f2',
-            fill: false,
-            borderDash: [4, 3]
+            fill: false
           }
         ]
       },
@@ -1508,26 +1524,85 @@
       });
     });
 
-    // Make text elements editable
+    // Make text elements editable — broad coverage
     var editableSelectors = [
-      '.goal-note', '.insight-body', '.insight-title',
-      '.focus-title', '.focus-desc', '.checklist-item label',
+      // Goals
+      '.goal-note', '.goal-name', '.goal-value',
+      // Coach notes
+      '.insight-body', '.insight-title',
+      '.focus-title', '.focus-desc',
       '.coach-header .coach-subtitle',
+      // Checklist
+      '.checklist-item label',
+      '.checklist-category', '.checklist-footer',
+      // Cards
       '.card > p', '.card-title',
-      '.checklist-category', '.checklist-footer'
+      // Key insight box under video table
+      '[style*="e0f2fd"]',
+      // Storytelling analysis — all text inside the story cards
+      '.story-grid span[style]', '.story-grid div[style]',
+      '.framework-grid div[style]'
     ];
 
     editableSelectors.forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (el) {
+        // Skip containers that are just layout wrappers
+        if (el.children.length > 3 && !el.textContent.trim()) return;
         el.setAttribute('contenteditable', 'true');
         el.setAttribute('spellcheck', 'true');
       });
     });
 
-    // Also make the viewer experience narrative editable
-    document.querySelectorAll('.vex-grid p, [style*="one-line read"] + p').forEach(function (el) {
+    // Viewer experience + one-line read narratives
+    document.querySelectorAll('.vex-grid p').forEach(function (el) {
       el.setAttribute('contenteditable', 'true');
     });
+    // The "one-line read" paragraph
+    document.querySelectorAll('[style*="one-line read"]').forEach(function (el) {
+      var next = el.nextElementSibling;
+      if (next && next.tagName === 'P') {
+        next.setAttribute('contenteditable', 'true');
+      }
+    });
+    // Catch the one-line read by its parent styling
+    document.querySelectorAll('p[style]').forEach(function (el) {
+      var text = el.textContent || '';
+      if (text.indexOf('story is the multiplier') > -1 || text.indexOf('wrap your') > -1) {
+        el.setAttribute('contenteditable', 'true');
+      }
+    });
+
+    // --- Add/delete buttons for checklist items ---
+    document.querySelectorAll('.checklist-list').forEach(function (list) {
+      // Delete button on each existing item
+      list.querySelectorAll('.checklist-item').forEach(function (item) {
+        addDeleteBtn(item);
+      });
+      // "+ Add item" button at the end of each list
+      var addBtn = document.createElement('button');
+      addBtn.className = 'edit-add-btn';
+      addBtn.textContent = '+ Add item';
+      addBtn.onclick = function () {
+        var newItem = document.createElement('div');
+        newItem.className = 'checklist-item';
+        var id = 'cnew' + Date.now();
+        newItem.innerHTML = '<input type="checkbox" id="' + id + '" /><label for="' + id + '" contenteditable="true" spellcheck="true">New action item — click to edit</label>';
+        addDeleteBtn(newItem);
+        list.insertBefore(newItem, addBtn);
+        newItem.querySelector('label').focus();
+      };
+      list.appendChild(addBtn);
+    });
+
+    function addDeleteBtn(item) {
+      var btn = document.createElement('button');
+      btn.className = 'edit-delete-btn';
+      btn.textContent = '×';
+      btn.title = 'Remove this item';
+      btn.onclick = function () { item.remove(); };
+      item.style.position = 'relative';
+      item.appendChild(btn);
+    }
   })();
 
   function approveReport() {
@@ -1539,8 +1614,8 @@
     // Remove hidden sections entirely
     document.querySelectorAll('.section.edit-hidden').forEach(function (s) { s.remove(); });
 
-    // Remove toggle switches
-    document.querySelectorAll('.section-toggle').forEach(function (t) { t.remove(); });
+    // Remove toggle switches and edit buttons
+    document.querySelectorAll('.section-toggle, .edit-add-btn, .edit-delete-btn').forEach(function (t) { t.remove(); });
 
     // Remove contenteditable
     document.querySelectorAll('[contenteditable]').forEach(function (el) {
@@ -1555,7 +1630,31 @@
     var cleanUrl = window.location.origin + window.location.pathname;
     window.history.replaceState({}, '', cleanUrl);
 
-    alert('Report finalized! Share this page with the creator.');
+    // Extract creator name and coach name from the page
+    var creatorName = document.querySelector('.creator-name') ? document.querySelector('.creator-name').textContent.trim() : 'your creator';
+    var coachName = document.querySelector('.coach-name') ? document.querySelector('.coach-name').textContent.replace('Coach\'s Notes \u2014 ', '').trim() : 'Your coach';
+
+    // Show the finalize prompt with copy-paste message
+    var reportUrl = cleanUrl;
+    var msg = 'Hey ' + creatorName.split(' ')[0] + '! \ud83d\udc4b Your monthly coaching report is ready.\n\n'
+      + 'Here\u2019s a look at what worked in April, what to improve, and your action plan for May:\n'
+      + reportUrl + '\n\n'
+      + 'Take a look when you get a chance and let me know if you have any questions!';
+
+    // Create a modal overlay
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    var modal = document.createElement('div');
+    modal.style.cssText = 'background:white;border-radius:16px;padding:28px;max-width:560px;width:100%;font-family:Satoshi,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.3);';
+    modal.innerHTML = '<div style="font-size:18px;font-weight:700;color:#0a0d15;margin-bottom:4px;">\u2705 Report finalized!</div>'
+      + '<p style="font-size:13px;color:#3d424e;margin-bottom:16px;">Copy this message and paste it to ' + creatorName.split(' ')[0] + ' in your coaching chat:</p>'
+      + '<textarea id="finalizeMsg" style="width:100%;height:140px;border:1.5px solid #ccd0db;border-radius:10px;padding:12px;font-family:Satoshi,system-ui,sans-serif;font-size:13px;line-height:1.5;resize:vertical;color:#0a0d15;">' + msg + '</textarea>'
+      + '<div style="display:flex;gap:10px;margin-top:14px;">'
+      + '<button onclick="document.getElementById(\'finalizeMsg\').select();document.execCommand(\'copy\');this.textContent=\'Copied! \u2705\'" style="flex:1;background:linear-gradient(115deg,#0979FF 0%,#5A06CB 100%);color:white;border:none;border-radius:8px;padding:10px;font-family:Satoshi,sans-serif;font-size:13px;font-weight:700;cursor:pointer;">\ud83d\udccb Copy message</button>'
+      + '<button onclick="this.closest(\'div\').parentNode.parentNode.remove()" style="flex:0 0 auto;background:#eceef3;color:#3d424e;border:none;border-radius:8px;padding:10px 16px;font-family:Satoshi,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Done</button>'
+      + '</div>';
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
   }
 </script>
 
