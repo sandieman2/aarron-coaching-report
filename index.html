@@ -6,6 +6,7 @@
   <title>vidIQ Coaching Report — Aarron Deliu · April 2026</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     /* ===========================
        vidIQ Supernova Design System
@@ -710,6 +711,7 @@
     @media (max-width: 720px) {
       .story-grid { grid-template-columns: 1fr !important; }
       .framework-grid { grid-template-columns: 1fr !important; }
+      .vex-grid { grid-template-columns: 1fr !important; }
     }
 </style>
 </head>
@@ -758,7 +760,7 @@
         <div class="stat-tile">
           <div class="stat-value">+3K</div>
           <div class="stat-label">New Subscribers</div>
-          <span class="stat-delta up">↑ 17.6%</span>
+          <span class="stat-delta up">↑ 17.6% vs March</span>
         </div>
 
         <div class="stat-tile">
@@ -774,30 +776,35 @@
         </div>
 
         <div class="stat-tile">
-          <div class="stat-value">57K</div>
-          <div class="stat-label">Top Video Views</div>
-          <span class="stat-delta up">↑ collab win</span>
-        </div>
-
-        <div class="stat-tile">
           <div class="stat-value">14</div>
           <div class="stat-label">Videos Published</div>
           <span class="stat-delta neutral">— on pace</span>
         </div>
 
-        <div class="stat-tile">
-          <div class="stat-value">4.8%</div>
-          <div class="stat-label">Avg CTR</div>
-          <span class="stat-delta up">↑ +0.9%</span>
-        </div>
+      </div>
 
+      <!-- Coaching progress chart -->
+      <div style="margin-top:22px; padding:18px 18px 14px; background:#fafbff; border:1px solid var(--cloud); border-radius:12px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+          <div>
+            <div style="font-size:14px; font-weight:700; color:var(--charcoal); letter-spacing:-.2px;">Subscriber growth since coaching started</div>
+            <div style="font-size:11.5px; color:var(--slate); margin-top:2px;">Monthly snapshots · vertical line marks coaching kickoff</div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:center; font-size:11px; color:var(--slate);">
+            <span style="display:flex; align-items:center; gap:5px;"><span style="width:10px; height:10px; background:#5A06CB; border-radius:50%;"></span> Subscribers</span>
+            <span style="display:flex; align-items:center; gap:5px;"><span style="width:10px; height:10px; background:#0091f2; border-radius:50%;"></span> Monthly views</span>
+          </div>
+        </div>
+        <div style="position:relative; height:220px;">
+          <canvas id="coachingProgressChart"></canvas>
+        </div>
       </div>
 
       <div class="milestone-row">
+        <div class="milestone-badge"><span class="dot"></span> Coaching started — Apr 8</div>
         <div class="milestone-badge"><span class="dot"></span> 18K Subs — Apr 9</div>
         <div class="milestone-badge"><span class="dot"></span> 19K Subs — Apr 18</div>
         <div class="milestone-badge"><span class="dot"></span> 20K Subs — May 4</div>
-        <div class="milestone-badge"><span class="dot"></span> Coaching started — Apr 8</div>
       </div>
     </div>
   </section>
@@ -809,6 +816,7 @@
     <p class="section-label">Goal Progress</p>
     <div class="card">
       <div class="card-title">🎯 30-Day Goals</div>
+      <p style="font-size:12.5px; color:var(--slate); margin-top:-2px; margin-bottom:14px;">Goals are pulled automatically from your coaching conversations with Anthony — mentioned in chat or live calls, tracked here.</p>
       <div class="goal-list">
 
         <div class="goal-item">
@@ -883,7 +891,6 @@
             <tr>
               <th>Title</th>
               <th>Views</th>
-              <th>CTR</th>
               <th>Avg View Duration</th>
               <th>Subs Gained</th>
             </tr>
@@ -895,7 +902,6 @@
                 <span class="video-type-badge long">Long-form</span>
               </td>
               <td><span class="views-num">57,284</span></td>
-              <td><span class="ctr-pill high">8.2%</span></td>
               <td>7m 12s</td>
               <td>+1,840</td>
             </tr>
@@ -905,7 +911,6 @@
                 <span class="video-type-badge short">Short</span>
               </td>
               <td><span class="views-num">15,100</span></td>
-              <td><span class="ctr-pill high">6.8%</span></td>
               <td>0m 42s</td>
               <td>+310</td>
             </tr>
@@ -915,7 +920,6 @@
                 <span class="video-type-badge long">Long-form</span>
               </td>
               <td><span class="views-num">4,920</span></td>
-              <td><span class="ctr-pill med">4.3%</span></td>
               <td>6m 38s</td>
               <td>+390</td>
             </tr>
@@ -925,7 +929,6 @@
                 <span class="video-type-badge short">Short</span>
               </td>
               <td><span class="views-num">4,670</span></td>
-              <td><span class="ctr-pill med">4.1%</span></td>
               <td>0m 38s</td>
               <td>+88</td>
             </tr>
@@ -935,7 +938,6 @@
                 <span class="video-type-badge long">Long-form</span>
               </td>
               <td><span class="views-num">3,200</span></td>
-              <td><span class="ctr-pill med">3.9%</span></td>
               <td>9m 55s</td>
               <td>+215</td>
             </tr>
@@ -945,7 +947,6 @@
                 <span class="video-type-badge long">Long-form</span>
               </td>
               <td><span class="views-num">37</span></td>
-              <td><span class="ctr-pill low">0.6%</span></td>
               <td>4m 12s</td>
               <td>+2</td>
             </tr>
@@ -959,76 +960,8 @@
   </section>
 
   <!-- ===========================
-       4. IMPRESSIONS & CTR
+       4. STORYTELLING ANALYSIS
        =========================== -->
-  <section class="section">
-    <p class="section-label">Impressions &amp; CTR</p>
-    <div class="card">
-      <div class="card-title">📡 Discovery Performance</div>
-      <div class="imp-grid">
-
-        <div class="imp-tile">
-          <div class="imp-label">Total Impressions</div>
-          <div class="imp-value">1.54M</div>
-          <div class="imp-context">+38% vs March 2026</div>
-        </div>
-
-        <div class="imp-tile">
-          <div class="imp-label">Overall CTR</div>
-          <div class="imp-value">4.8%</div>
-          <div class="imp-context">YouTube avg is 2–5%. You're right at the ceiling.</div>
-        </div>
-
-        <div class="imp-tile">
-          <div class="imp-label">Impressions by Source</div>
-          <div class="imp-chart-bar">
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Browse</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill blue" style="width:62%"></div></div>
-              <span class="imp-bar-val">62%</span>
-            </div>
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Suggested</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill purple" style="width:24%"></div></div>
-              <span class="imp-bar-val">24%</span>
-            </div>
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Search</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill green" style="width:14%"></div></div>
-              <span class="imp-bar-val">14%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="imp-tile">
-          <div class="imp-label">CTR by Content Type</div>
-          <div class="imp-chart-bar">
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Collabs</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill blue" style="width:82%"></div></div>
-              <span class="imp-bar-val">8.2%</span>
-            </div>
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Shorts</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill purple" style="width:60%"></div></div>
-              <span class="imp-bar-val">6.0%</span>
-            </div>
-            <div class="imp-bar-row">
-              <span class="imp-bar-label">Long-form</span>
-              <div class="imp-bar-track"><div class="imp-bar-fill green" style="width:43%"></div></div>
-              <span class="imp-bar-val">4.3%</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===========================
-       5. COACH'S NOTES
-       =========================== -->
-    <!-- ════════════════ SECTION: STORYTELLING ANALYSIS ════════════════ -->
   <section class="section">
     <p class="section-label">Storytelling Analysis</p>
     <div class="card" style="overflow:visible;">
@@ -1134,6 +1067,44 @@
     </div>
   </section>
 
+  <!-- ===========================
+       5. VIEWER EXPERIENCE SUMMARY
+       =========================== -->
+  <section class="section">
+    <p class="section-label">Viewer Experience</p>
+    <div class="card">
+      <div class="card-title">👀 What April felt like for your audience</div>
+      <p style="font-size:12.5px; color:var(--slate); margin-top:-2px; margin-bottom:18px;">A plain-language read on what's working and what's not, based on the month's data.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" class="vex-grid">
+
+        <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:12px; padding:18px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; color:#166534; margin-bottom:8px;">✅ What's working</div>
+          <p style="font-size:13.5px; color:#1a2e1a; line-height:1.65;">
+            <strong>Story-driven long-form is your unlock.</strong> The Cleetus collab (11:42, narrative arc, clear hook) pulled <strong>57K views</strong> — about <strong>15× your typical long-form</strong>. Your Shorts are also pulling their weight: a steady <strong>4–5K average</strong> with one breakout at 15K. New subscribers came in fast (+3K, a <strong>17.6% bump</strong>), and you crossed three milestone thresholds inside 26 days. Coaching cadence is sticking too — 10+ review cycles, fast turnaround between feedback and publish.
+          </p>
+        </div>
+
+        <div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:12px; padding:18px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; color:#991b1b; margin-bottom:8px;">⚠️ What's not</div>
+          <p style="font-size:13.5px; color:#451a1a; line-height:1.65;">
+            <strong>Raw footage doesn't land.</strong> Strip out the Cleetus outlier and your long-form averages <strong>~2.4K views</strong> — fine, but not where the channel can be. The 35-min cockpit POV (37 views) is the clearest signal: same pilot, same week, no narrative → <strong>1,560× fewer views</strong>. Thumbnails on long-form are also leaving clicks on the table — they're being designed for people who already know you, not strangers scrolling the home page.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:14px 16px; background:linear-gradient(115deg, rgba(9,121,255,.05) 0%, rgba(90,6,203,.05) 100%); border:1.5px solid rgba(90,6,203,.12); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; color:#5A06CB; margin-bottom:6px;">🎯 The one-line read</div>
+        <p style="font-size:14px; color:var(--charcoal); line-height:1.6; margin:0;">
+          When you wrap your one-of-a-kind footage in a real story — a question, a journey, a payoff — strangers click and stay. When you don't, even spectacular footage stalls. <strong>The story is the multiplier.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       6. COACH'S NOTES
+       =========================== -->
   <section class="section">
     <p class="section-label">Coach's Notes</p>
     <div class="card">
@@ -1228,75 +1199,59 @@
   </section>
 
   <!-- ===========================
-       6. MAY ACTION PLAN
+       7. MAY ACTION PLAN
        =========================== -->
   <section class="section">
     <p class="section-label">Action Plan</p>
     <div class="card">
-      <div class="card-title">✅ Your May Action Plan</div>
-      <p style="font-size: 13px; color: var(--slate); margin-bottom: 6px;">Check these off as you go — your coach will review at your next session</p>
+      <div class="card-title">✅ What to work on in May</div>
+      <p style="font-size: 13px; color: var(--slate); margin-bottom: 14px;">Each item is tied to something specific in this month's data. Check them off as you go — Anthony will review at your next session.</p>
 
-      <p class="checklist-category">📹 Content Production</p>
+      <p class="checklist-category">📹 Repeat what's working</p>
       <div class="checklist-list">
         <div class="checklist-item">
           <input type="checkbox" id="c1" />
-          <label for="c1">Publish 4 long-form videos (1/week) — each between 10–18 minutes with a narrative arc, not raw footage.</label>
+          <label for="c1"><strong>Publish 4 long-form videos, 12–18 min, each with a narrative arc.</strong> Your one story-driven long-form (Cleetus, 11:42) did <strong>57K</strong>. Raw cockpit POV (35:33) did <strong>37</strong>. Length isn't the issue — narrative is.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c2" />
-          <label for="c2">Publish 20+ Shorts (5/week minimum). You hit 29 in April — maintain or exceed that pace.</label>
+          <label for="c2"><strong>Keep your Shorts cadence (20+/month).</strong> You hit 29 in April, averaged 4–5K per Short, with one breakout at 15K. Pace is working — don't drop it.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c3" />
-          <label for="c3">Write a hook for each long-form video BEFORE editing. Share it with Anthony for feedback before you publish. Template: answer "Why should I watch THIS?" in the first 10 seconds.</label>
+          <label for="c3"><strong>Film and publish at least 1 collab in May.</strong> Cleetus (57K views, +1,840 subs in one video) is the playbook. Aim for one cross-niche collab/month — automotive, extreme sports, or military.</label>
         </div>
       </div>
 
-      <p class="checklist-category">🖼️ Thumbnails &amp; Packaging</p>
+      <p class="checklist-category">🔧 Fix what's not</p>
       <div class="checklist-list">
         <div class="checklist-item">
           <input type="checkbox" id="c4" />
-          <label for="c4">A/B test thumbnails on your next 2 long-form videos. Create 2 options for each and let data pick the winner.</label>
+          <label for="c4"><strong>Stop publishing raw footage without a story wrapper.</strong> The 35-min cockpit POV got 37 views — same week, same pilot. If you have raw footage you love, build a hook + narration around it before publishing.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c5" />
-          <label for="c5">Apply the "stranger test" to every thumbnail. Before uploading, ask: "Would someone who's never heard of me click this?" If not — redesign it.</label>
+          <label for="c5"><strong>Redesign every long-form thumbnail for strangers, not subscribers.</strong> Your Shorts already do this ("Can you guess what the guy with the light gun is doing?"). Apply that same first-time-viewer test to every long-form thumbnail.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c6" />
-          <label for="c6">Add text overlays to at least 3 Shorts this month. Test curiosity-gap captions in the first 2 seconds (like the Blue Angels light gun Short).</label>
+          <label for="c6"><strong>Write the hook before you edit.</strong> Long-form excluding the Cleetus outlier averages ~2.4K views. The fix per Anthony's notes: every video needs a 10-second answer to "why should I watch THIS?" Share the hook line with Anthony before you cut.</label>
         </div>
       </div>
 
-      <p class="checklist-category">🤝 Growth &amp; Collaboration</p>
+      <p class="checklist-category">🎯 Push toward the goal</p>
       <div class="checklist-list">
         <div class="checklist-item">
           <input type="checkbox" id="c7" />
-          <label for="c7">Reach out to 3 creators in adjacent niches (automotive, extreme sports, military) for a potential May collab. DM or email at least 3 by May 15.</label>
+          <label for="c7"><strong>Hit 22,000 subscribers by end of May.</strong> You're at 20K and gaining ~650/week off April's pace — well within reach if you hold the publishing rhythm.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c8" />
-          <label for="c8">Film and publish at least 1 collaboration video in May. The Cleetus collab did 57K views — repeat that playbook.</label>
+          <label for="c8"><strong>A/B test thumbnails on your next 2 long-form videos.</strong> Two options each, let YouTube pick the winner. Your strongest growth lever right now is the click — not the content.</label>
         </div>
         <div class="checklist-item">
           <input type="checkbox" id="c9" />
-          <label for="c9">Add end screens to all 4 long-form videos. Use the template Anthony showed you — best-for-viewer + subscribe combo.</label>
-        </div>
-      </div>
-
-      <p class="checklist-category">📊 Analytics &amp; Coaching</p>
-      <div class="checklist-list">
-        <div class="checklist-item">
-          <input type="checkbox" id="c10" />
-          <label for="c10">Screenshot your retention graph + CTR/impressions for each new long-form video after 48 hours and share with Anthony in chat.</label>
-        </div>
-        <div class="checklist-item">
-          <input type="checkbox" id="c11" />
-          <label for="c11">Check your new-vs-returning viewer ratio in YouTube Studio → Audience tab. Report back to Anthony by May 20.</label>
-        </div>
-        <div class="checklist-item">
-          <input type="checkbox" id="c12" />
-          <label for="c12">Hit 22,000 subscribers by end of May. You're at 20K and gaining ~650/week — this is very achievable.</label>
+          <label for="c9"><strong>Send Anthony your hook + thumbnail draft 48h before each long-form upload.</strong> Your review-to-publish loop is already fast (10+ cycles in April). Tightening the pre-publish loop is the next gain.</label>
         </div>
       </div>
 
@@ -1313,5 +1268,153 @@
   </div>
 
 </main>
+
+<script>
+  // ===========================
+  // Coaching Progress Chart (sample data)
+  // Structure: monthly snapshots; coaching started Apr 8, 2026
+  // Replace `chartData` with real data when wiring up the pipeline.
+  // ===========================
+  (function () {
+    if (typeof Chart === 'undefined') return;
+    var ctx = document.getElementById('coachingProgressChart');
+    if (!ctx) return;
+
+    var chartData = {
+      labels: ['Oct \'25', 'Nov \'25', 'Dec \'25', 'Jan \'26', 'Feb \'26', 'Mar \'26', 'Apr \'26', 'May \'26 (MTD)'],
+      subs:  [14200, 14900, 15400, 15900, 16400, 17000, 20000, 20650],
+      views: [38000, 42000, 41000, 45000, 48000, 53000, 74000, 22000],
+      // Index of coaching kickoff (Apr 2026 = index 6)
+      coachingStartIndex: 6
+    };
+
+    var coachingX = chartData.coachingStartIndex;
+
+    // Vertical line + label plugin for the "coaching started" annotation
+    var coachingMarkerPlugin = {
+      id: 'coachingMarker',
+      afterDatasetsDraw: function (chart) {
+        var xScale = chart.scales.x;
+        var yScale = chart.scales.y;
+        if (!xScale || !yScale) return;
+        var x = xScale.getPixelForValue(coachingX);
+        var ctx2 = chart.ctx;
+        ctx2.save();
+        ctx2.strokeStyle = '#5A06CB';
+        ctx2.lineWidth = 1.5;
+        ctx2.setLineDash([5, 4]);
+        ctx2.beginPath();
+        ctx2.moveTo(x, yScale.top);
+        ctx2.lineTo(x, yScale.bottom);
+        ctx2.stroke();
+        ctx2.setLineDash([]);
+        // Label pill
+        var label = 'Coaching started';
+        ctx2.font = '600 10px Satoshi, system-ui, sans-serif';
+        var w = ctx2.measureText(label).width + 14;
+        var h = 18;
+        var lx = Math.min(x + 6, chart.chartArea.right - w - 2);
+        var ly = yScale.top + 4;
+        ctx2.fillStyle = '#5A06CB';
+        ctx2.beginPath();
+        if (ctx2.roundRect) {
+          ctx2.roundRect(lx, ly, w, h, 9);
+        } else {
+          ctx2.rect(lx, ly, w, h);
+        }
+        ctx2.fill();
+        ctx2.fillStyle = '#ffffff';
+        ctx2.textBaseline = 'middle';
+        ctx2.fillText(label, lx + 7, ly + h / 2 + 0.5);
+        ctx2.restore();
+      }
+    };
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: chartData.labels,
+        datasets: [
+          {
+            label: 'Subscribers',
+            data: chartData.subs,
+            borderColor: '#5A06CB',
+            backgroundColor: 'rgba(90, 6, 203, 0.08)',
+            yAxisID: 'y',
+            tension: 0.35,
+            borderWidth: 2.5,
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            pointBackgroundColor: '#5A06CB',
+            fill: true
+          },
+          {
+            label: 'Monthly views',
+            data: chartData.views,
+            borderColor: '#0091f2',
+            backgroundColor: 'rgba(0, 145, 242, 0.06)',
+            yAxisID: 'y1',
+            tension: 0.35,
+            borderWidth: 2.5,
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            pointBackgroundColor: '#0091f2',
+            fill: false,
+            borderDash: [4, 3]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(10, 13, 21, 0.92)',
+            padding: 10,
+            titleFont: { family: 'Satoshi', weight: '700', size: 12 },
+            bodyFont: { family: 'Satoshi', size: 12 },
+            callbacks: {
+              label: function (ctx) {
+                var v = ctx.parsed.y;
+                var pretty = v >= 1000 ? (v / 1000).toFixed(1) + 'K' : v;
+                return ctx.dataset.label + ': ' + pretty;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { family: 'Satoshi', size: 11 }, color: '#3d424e' }
+          },
+          y: {
+            position: 'left',
+            grid: { color: 'rgba(0,0,0,0.05)' },
+            ticks: {
+              font: { family: 'Satoshi', size: 11 },
+              color: '#5A06CB',
+              callback: function (v) { return v >= 1000 ? (v / 1000) + 'K' : v; }
+            },
+            title: { display: true, text: 'Subscribers', font: { family: 'Satoshi', size: 11, weight: '600' }, color: '#5A06CB' }
+          },
+          y1: {
+            position: 'right',
+            grid: { display: false },
+            ticks: {
+              font: { family: 'Satoshi', size: 11 },
+              color: '#0091f2',
+              callback: function (v) { return v >= 1000 ? (v / 1000) + 'K' : v; }
+            },
+            title: { display: true, text: 'Monthly views', font: { family: 'Satoshi', size: 11, weight: '600' }, color: '#0091f2' }
+          }
+        }
+      },
+      plugins: [coachingMarkerPlugin]
+    });
+  })();
+</script>
+
 </body>
 </html>
