@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aarron Deliu · May 2026 — vidIQ Coaching</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --iq-blue: #0979FF;
+      --iq-purple: #6C3AED;
+      --iq-dark: #0B1121;
+      --iq-navy: #111827;
+      --text-1: #111827;
+      --text-2: #4B5563;
+      --text-3: #9CA3AF;
+      --surface: #FFFFFF;
+      --bg: #F3F4F6;
+      --bg-alt: #F9FAFB;
+      --border: #E5E7EB;
+      --green: #059669; --green-light: #D1FAE5; --green-ring: #34D399;
+      --amber: #D97706; --amber-light: #FEF3C7; --amber-ring: #FBBF24;
+      --red: #DC2626; --red-light: #FEE2F2; --red-ring: #F87171;
+      --radius: 16px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--bg); color:var(--text-1); -webkit-font-smoothing:antialiased; }
+    .page { max-width:860px; margin:0 auto; padding-bottom:64px; }
+
+    /* ── HERO ── */
+    .hero {
+      position:relative; overflow:hidden; border-radius:0 0 24px 24px;
+      background:var(--iq-dark); color:#fff; padding:0;
+    }
+    .hero-banner {
+      width:100%; height:200px; object-fit:cover; display:block; opacity:.45;
+    }
+    .hero-content {
+      position:relative; padding:0 32px 32px;
+      margin-top:-80px; z-index:2;
+    }
+    .hero-brand {
+      font-size:11px; font-weight:700; letter-spacing:1.5px;
+      text-transform:uppercase; opacity:.55; margin-bottom:16px;
+    }
+    .hero-row { display:flex; align-items:flex-end; gap:18px; }
+    .hero-avatar {
+      width:72px; height:72px; border-radius:50%;
+      border:3px solid rgba(255,255,255,.3); object-fit:cover;
+      box-shadow:0 4px 24px rgba(0,0,0,.4);
+    }
+    .hero-info h1 { font-size:28px; font-weight:800; line-height:1.15; }
+    .hero-info .meta { font-size:14px; opacity:.6; margin-top:2px; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(255,255,255,.1); backdrop-filter:blur(8px);
+      padding:8px 16px; border-radius:24px; font-size:13px; font-weight:600;
+      margin-top:16px;
+    }
+
+    /* ── SECTION ── */
+    .section { padding:0 16px; margin-top:28px; }
+    .section-label {
+      font-size:11px; font-weight:700; letter-spacing:1.2px;
+      text-transform:uppercase; color:var(--text-3); margin-bottom:12px; padding:0 4px;
+    }
+
+    /* ── STRATEGIC BRIEFING ── */
+    .briefing {
+      background:var(--surface); border-radius:var(--radius); padding:28px 28px 24px;
+      box-shadow:0 1px 3px rgba(0,0,0,.04); position:relative;
+      border-left:4px solid var(--iq-blue); margin:0 16px; margin-top:-16px;
+      z-index:3;
+    }
+    .briefing .tag {
+      display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px;
+      text-transform:uppercase; color:var(--iq-blue);
+      background:rgba(9,121,255,.08); padding:3px 10px; border-radius:6px; margin-bottom:12px;
+    }
+    .briefing h2 { font-size:20px; font-weight:800; line-height:1.3; margin-bottom:8px; }
+    .briefing p { font-size:15px; line-height:1.7; color:var(--text-2); }
+
+    /* ── SCORE OVERVIEW ── */
+    .scores-row {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+      gap:12px;
+    }
+    .score-cell {
+      background:var(--surface); border-radius:14px; padding:20px 12px;
+      text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.04);
+    }
+    .donut-wrap { width:64px; height:64px; margin:0 auto 8px; position:relative; }
+    .donut-wrap svg { width:64px; height:64px; transform:rotate(-90deg); }
+    .donut-wrap .donut-bg { fill:none; stroke:var(--border); stroke-width:5; }
+    .donut-wrap .donut-val { fill:none; stroke-width:5; stroke-linecap:round; transition:stroke-dashoffset .6s ease; }
+    .donut-num {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      font-size:16px; font-weight:800; color:var(--text-1);
+    }
+    .score-label { font-size:12px; font-weight:600; color:var(--text-2); }
+
+    /* ── VIDEO CARD ── */
+    .vid-card {
+      background:var(--surface); border-radius:var(--radius); overflow:hidden;
+      box-shadow:0 1px 3px rgba(0,0,0,.04); margin-bottom:16px;
+    }
+    .vid-hero {
+      position:relative; cursor:pointer;
+    }
+    .vid-hero:hover .vid-thumb { filter:brightness(.95); }
+    .vid-thumb {
+      width:100%; height:220px; object-fit:cover; display:block; transition:filter .2s;
+    }
+    .vid-thumb-overlay {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(transparent, rgba(0,0,0,.75));
+      padding:20px 20px 16px; color:#fff;
+    }
+    .vid-thumb-overlay h3 { font-size:17px; font-weight:700; line-height:1.3; }
+    .vid-thumb-overlay .vid-meta {
+      display:flex; gap:14px; margin-top:6px; font-size:12px; opacity:.8;
+    }
+    .vid-verdict {
+      position:absolute; top:12px; right:12px;
+      padding:4px 12px; border-radius:8px; font-size:11px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.5px;
+    }
+    .verdict-strong { background:var(--green-light); color:var(--green); }
+    .verdict-mid { background:var(--amber-light); color:var(--amber); }
+    .verdict-weak { background:var(--red-light); color:var(--red); }
+
+    /* Score bar row inside video card */
+    .vid-scores {
+      display:flex; gap:0; border-bottom:1px solid var(--border);
+    }
+    .vid-score-item {
+      flex:1; text-align:center; padding:14px 6px; border-right:1px solid var(--border);
+    }
+    .vid-score-item:last-child { border-right:none; }
+    .vid-score-val { font-size:20px; font-weight:800; }
+    .vid-score-lbl { font-size:10px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.4px; margin-top:2px; }
+
+    /* Story arc */
+    .story-arc { padding:16px 20px; border-bottom:1px solid var(--border); }
+    .story-arc-label { font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .arc-bar {
+      display:flex; height:32px; border-radius:8px; overflow:hidden; gap:2px;
+    }
+    .arc-seg {
+      display:flex; align-items:center; justify-content:center;
+      font-size:10px; font-weight:700; color:#fff; letter-spacing:.3px;
+      transition:flex .3s;
+    }
+    .arc-seg.strong { background:var(--green); }
+    .arc-seg.weak { background:var(--amber); }
+    .arc-seg.missed { background:var(--red); }
+    .arc-legend {
+      display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:8px; font-size:11px; color:var(--text-2);
+    }
+    .arc-legend-dot {
+      width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; vertical-align:middle;
+    }
+
+    /* Expandable analysis */
+    .vid-details { padding:0 20px 20px; }
+    .vid-details[hidden] { display:none; }
+    .detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media (max-width:600px) { .detail-grid { grid-template-columns:1fr; } }
+    .detail-cell {
+      background:var(--bg-alt); border-radius:12px; padding:16px;
+    }
+    .detail-cell .dc-label {
+      font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+      color:var(--text-3); margin-bottom:6px;
+    }
+    .detail-cell .dc-text { font-size:13px; line-height:1.6; color:var(--text-2); }
+    .detail-action {
+      margin-top:12px; background:rgba(9,121,255,.06); border-radius:12px; padding:14px 16px;
+    }
+    .detail-action .da-label { font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--iq-blue); }
+    .detail-action .da-text { font-size:13px; font-weight:600; color:var(--text-1); margin-top:4px; line-height:1.5; }
+    .vid-toggle {
+      display:block; width:100%; text-align:center; padding:10px;
+      font-size:12px; font-weight:700; color:var(--iq-blue); cursor:pointer;
+      background:none; border:none; border-top:1px solid var(--border);
+    }
+    .vid-toggle:hover { background:rgba(9,121,255,.04); }
+
+    /* ── COACH NOTES ── */
+    .coach-note {
+      background:var(--surface); border-radius:var(--radius); padding:24px;
+      box-shadow:0 1px 3px rgba(0,0,0,.04);
+    }
+    .coach-note h3 {
+      font-size:14px; font-weight:700; margin-bottom:8px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .coach-note h3::before {
+      content:'✏️'; font-size:16px;
+    }
+    .editable {
+      min-height:60px; padding:12px 14px; border-radius:10px;
+      border:2px dashed var(--border); font-size:14px; line-height:1.6;
+      color:var(--text-2); outline:none; transition:border-color .2s;
+    }
+    .editable:focus { border-color:var(--iq-blue); background:rgba(9,121,255,.02); }
+    .editable:empty::before {
+      content:attr(data-placeholder); color:var(--text-3); font-style:italic;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap-card {
+      background:var(--surface); border-radius:var(--radius); padding:24px;
+      box-shadow:0 1px 3px rgba(0,0,0,.04);
+    }
+    .roadmap-card h2 { font-size:18px; font-weight:800; margin-bottom:4px; }
+    .roadmap-card > p { font-size:13px; color:var(--text-3); margin-bottom:20px; }
+    .rm-phase { display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); }
+    .rm-phase:first-of-type { border-top:none; }
+    .rm-dot-col { display:flex; flex-direction:column; align-items:center; padding-top:2px; }
+    .rm-dot { width:14px; height:14px; border-radius:50%; border:3px solid var(--iq-blue); background:#fff; flex-shrink:0; }
+    .rm-line { flex:1; width:2px; background:var(--border); margin-top:4px; }
+    .rm-content { flex:1; }
+    .rm-time { font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--iq-blue); }
+    .rm-title { font-size:15px; font-weight:700; margin-top:2px; }
+    .rm-desc { font-size:13px; color:var(--text-2); margin-top:4px; line-height:1.5; }
+    .rm-actions { margin-top:8px; }
+    .rm-action {
+      display:flex; align-items:baseline; gap:8px; padding:3px 0;
+      font-size:13px; color:var(--text-1); line-height:1.5;
+    }
+    .rm-action::before { content:'→'; color:var(--iq-blue); font-weight:700; flex-shrink:0; }
+
+    /* ── CHECKLIST ── */
+    .checklist-card {
+      background:var(--surface); border-radius:var(--radius); padding:24px;
+      box-shadow:0 1px 3px rgba(0,0,0,.04);
+    }
+    .checklist-card h2 { font-size:18px; font-weight:800; margin-bottom:16px; }
+    .cl-item { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .cl-item:last-child { border-bottom:none; }
+    .cl-box {
+      width:20px; height:20px; border-radius:6px; border:2px solid var(--border);
+      flex-shrink:0; margin-top:2px; cursor:pointer; transition:all .15s;
+    }
+    .cl-box.checked { background:var(--green); border-color:var(--green); }
+    .cl-text { font-size:13px; line-height:1.5; }
+    .cl-text strong { display:block; font-weight:700; }
+    .cl-text span { color:var(--text-2); }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align:center; padding:32px 16px; font-size:12px; color:var(--text-3);
+    }
+    .footer strong { color:var(--iq-blue); font-weight:800; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:640px) {
+      .hero-content { padding:0 20px 24px; }
+      .hero-info h1 { font-size:22px; }
+      .briefing { padding:20px; margin:0 12px; margin-top:-12px; }
+      .section { padding:0 12px; }
+      .vid-thumb { height:180px; }
+      .scores-row { grid-template-columns:repeat(3,1fr); }
+    }
+
+    @media print {
+      body { background:#fff; }
+      .hero { border-radius:0; }
+      .vid-details { display:block !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <img class="hero-banner" src="https://yt3.googleusercontent.com/JsppJrRVwd9rY7dGyYZGINo3BAzwLZY9DWPnm6WOFDW1BsuKOPr2vr4yGA6D-tTHAM01LHL5Zw=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="" onerror="this.style.background='linear-gradient(135deg,#0B1121,#1E3A5F)'">
+    <div class="hero-content">
+      <div class="hero-brand">vidIQ Coaching</div>
+      <div class="hero-row">
+        <img class="hero-avatar" src="https://yt3.googleusercontent.com/ytc/AIdro_lFx2rk5NWWX3Qddder3hWPE7te7pfFeqJILeM1hIS6qmw=s900-c-k-c0x00ffffff-no-rj" alt="">
+        <div class="hero-info">
+          <h1>Aarron Deliu</h1>
+          <div class="meta">22.3K subscribers · @AarronDeliu</div>
+        </div>
+      </div>
+      <div class="hero-badge">📅 May 2026 Growth Report</div>
+    </div>
+  </div>
+
+  <!-- ═══ STRATEGIC BRIEFING ═══ -->
+  <div class="briefing">
+    <span class="tag">This Month's Strategic Focus</span>
+    <h2>Your best content proves the formula — now you&#x27;re just ignoring it.</h2>
+    <p>&quot;Blue Angels Sneak Pass&quot; hit 27K views with a 9/10 hook and story because the subject filled the frame, the moment was undeniable, and the content delivered exactly what the title promised — yet you&#x27;ve replicated none of those conditions since. &quot;Blue Angels… nuff said&quot; scored a 2/10 hook on a subject that should be a guaranteed attention-grab, killed by a title-to-first-frame disconnect and a subject so small in frame it reads as amateur footage. Next month, treat &quot;Sneak Pass&quot; as your production checklist: maximum subject-to-frame ratio, title that mirrors the first visual, peak moment as the thumbnail — before you film anything else.</p>
+  </div>
+
+  <!-- ═══ OVERALL SCORES ═══ -->
+  <div class="section">
+    <div class="section-label">Channel Scorecard — May 2026</div>
+    <div class="scores-row">
+      <div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--red-ring)" stroke-dasharray="75.1 88.2"/>
+        </svg>
+        <div class="donut-num" style="color:var(--red)">4.6</div>
+      </div>
+      <div class="score-label">Title</div>
+    </div>
+<div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--red-ring)" stroke-dasharray="62.1 101.3"/>
+        </svg>
+        <div class="donut-num" style="color:var(--red)">3.8</div>
+      </div>
+      <div class="score-label">Thumbnail</div>
+    </div>
+<div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--red-ring)" stroke-dasharray="70.2 93.1"/>
+        </svg>
+        <div class="donut-num" style="color:var(--red)">4.3</div>
+      </div>
+      <div class="score-label">Hook</div>
+    </div>
+<div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--amber-ring)" stroke-dasharray="86.6 76.8"/>
+        </svg>
+        <div class="donut-num" style="color:var(--amber)">5.3</div>
+      </div>
+      <div class="score-label">Story</div>
+    </div>
+<div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--red-ring)" stroke-dasharray="22.9 140.5"/>
+        </svg>
+        <div class="donut-num" style="color:var(--red)">1.4</div>
+      </div>
+      <div class="score-label">CTA</div>
+    </div>
+<div class="score-cell">
+      <div class="donut-wrap">
+        <svg viewBox="0 0 64 64">
+          <circle class="donut-bg" cx="32" cy="32" r="26"/>
+          <circle class="donut-val" cx="32" cy="32" r="26"
+            stroke="var(--amber-ring)" stroke-dasharray="81.7 81.7"/>
+        </svg>
+        <div class="donut-num" style="color:var(--amber)">5.0</div>
+      </div>
+      <div class="score-label">Production</div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ═══ VIDEO DEEP DIVES ═══ -->
+  <div class="section">
+    <div class="section-label">Content Deep Dives · 9 videos</div>
+    <div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/I5Zs0ZFUlT0/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>Blue Angels Sneak Pass</h3>
+          <div class="vid-meta">
+            <span>Short · 0:11</span>
+            <span>27.7K views</span>
+            <span>2026-05-19</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-strong">Strong</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">9</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">9</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg strong" style="flex:25" title="Abstract tarmac close-up = genuine pattern interrupt, kills scroll reflex">Hook</div><div class="arc-seg strong" style="flex:25" title="Blue Angels personnel reveal answers &#x27;where&#x27; while creating new &#x27;what&#x27;s coming&#x27; tension">Setup</div><div class="arc-seg strong" style="flex:25" title="Human reactions as leading indicator — classic suspense technique">Build</div><div class="arc-seg strong" style="flex:25" title="F/A-18 sneak pass — scale contrast makes it rewatchable">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--green)"></span>Hook: Abstract tarmac close-up = genuine pattern interrupt, kills …</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Setup: Blue Angels personnel reveal answers &#x27;where&#x27; while…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Build: Human reactions as leading indicator — classic suspense tech…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Climax: F/A-18 sneak pass — scale contrast makes it rewatchable</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Abstract tarmac close-up is a masterclass in pattern interruption. Forces &#x27;what am I looking at?&#x27; which kills scrolling.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Perfect 4-beat tension arc: confusion → recognition → anticipation → payoff. Handheld authenticity feels like &#x27;you&#x27;re actually there&#x27; rather than polished production.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">Direct and search-friendly. &#x27;Blue Angels&#x27; is a high-search term. &#x27;Sneak Pass&#x27; creates curiosity for aviation fans.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">The tarmac-level angle differentiates from standard airshow crowd footage. Could improve with a frame showing the jet at peak moment.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Use this exact hook formula (confusion → reveal → payoff) on future cockpit content</div>
+<div class="rm-action">Add a simple end-screen or profile mention — 0 CTA means lost follow conversions on your biggest video</div>
+<div class="rm-action">Film from this access-first perspective more often — your POV is your competitive advantage</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/9qFd-7Zg060/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>On my way to Vero Beach Airshow</h3>
+          <div class="vid-meta">
+            <span>Short · 0:12</span>
+            <span>11.6K views</span>
+            <span>2026-05-15</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-mid">Room to grow</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg strong" style="flex:20" title="Cockpit POV at altitude — immediate immersion">Hook</div><div class="arc-seg weak" style="flex:30" title="Flight footage without narrative framing">Setup</div><div class="arc-seg weak" style="flex:30" title="Similar angles without escalation">Build</div><div class="arc-seg weak" style="flex:20" title="Ends without a clear payoff moment">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--green)"></span>Hook: Cockpit POV at altitude — immediate immersion</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Setup: Flight footage without narrative framing</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Build: Similar angles without escalation</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Climax: Ends without a clear payoff moment</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Cockpit POV works as a hook — immediate immersion in a world most people will never see.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Strong opening — cockpit POV in flight is inherently compelling. But the journey doesn&#x27;t build to a destination or moment. It&#x27;s &#x27;I&#x27;m flying&#x27; for 12 seconds without escalation.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">&#x27;On my way to Vero Beach Airshow&#x27; creates some destination curiosity but doesn&#x27;t promise a specific payoff.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Standard cockpit view — doesn&#x27;t stand out in a feed. Needs a distinctive visual element.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">End on the arrival — show the airshow from the air or the landing approach for a payoff</div>
+<div class="rm-action">Add text overlay with destination and context</div>
+<div class="rm-action">Test a more specific title: &#x27;POV: Flying my aerobatic plane to an airshow&#x27;</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/TEvcYXGfuLY/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>Blue angels… nuff said</h3>
+          <div class="vid-meta">
+            <span>Short · 0:29</span>
+            <span>7.1K views</span>
+            <span>2026-05-25</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg missed" style="flex:15" title="Opens on confusing wing close-up — no Blue Angels visible, title mismatch">Hook</div><div class="arc-seg weak" style="flex:20" title="Jets appear as tiny specks — tarmac and buildings dominate frame">Setup</div><div class="arc-seg strong" style="flex:35" title="Formation climbing with smoke trails — best visual in the video">Build</div><div class="arc-seg weak" style="flex:20" title="Jets shrinking as they fly away — energy drains visually">Climax</div><div class="arc-seg missed" style="flex:10" title="No CTA present">CTA</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--red)"></span>Hook: Opens on confusing wing close-up — no Blue Angels visible, t…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Setup: Jets appear as tiny specks — tarmac and buildings dominate f…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Build: Formation climbing with smoke trails — best visual in the vi…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Climax: Jets shrinking as they fly away — energy drains visually</span><span><span class="arc-legend-dot" style="background:var(--red)"></span>CTA: No CTA present</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Fatal. Opens on a parked commercial aircraft wing. Viewer sees zero Blue Angels in the first second. Title promises Blue Angels, Frame 1 delivers confusion.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">The jets are compositionally an afterthought — never more than 15-20% of frame area. The access advantage (inside the perimeter) isn&#x27;t leveraged in the shots.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">&#x27;nuff said&#x27; is fan-service — rewards existing interest but creates zero curiosity gap. Does no work for discovery.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Same problem as the video — jets are too small to register at thumbnail scale.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Open on the smoke-trail formation shot (currently at 35% mark) — lead with the best visual</div>
+<div class="rm-action">Rewrite title to create curiosity: &#x27;POV: Standing on the runway during Blue Angels&#x27;</div>
+<div class="rm-action">Film at closer angles — if you have tarmac access, get shots that crowd can&#x27;t get</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/QV0Yqn_Z6_g/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>Engine Warm-up: Crucial for Airshow Safety!</h3>
+          <div class="vid-meta">
+            <span>Short · 0:23</span>
+            <span>3.8K views</span>
+            <span>2026-05-14</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg missed" style="flex:15" title="Blurred foreground obstructs 40% of frame, plane is small and distant">Hook</div><div class="arc-seg weak" style="flex:25" title="Static angle — engine warm-up is invisible from this distance">Setup</div><div class="arc-seg missed" style="flex:35" title="All frames nearly identical — zero visual progression">Build</div><div class="arc-seg missed" style="flex:25" title="No payoff — same static shot throughout">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--red)"></span>Hook: Blurred foreground obstructs 40% of frame, plane is small an…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Setup: Static angle — engine warm-up is invisible from this distanc…</span><span><span class="arc-legend-dot" style="background:var(--red)"></span>Build: All frames nearly identical — zero visual progression</span><span><span class="arc-legend-dot" style="background:var(--red)"></span>Climax: No payoff — same static shot throughout</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Weak. Blurred foreground obstruction + distant subject = instant scroll.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Flat. All frames are nearly identical — static plane, same angle, same hangar. Zero visual progression or payoff. The subject (engine warm-up) is invisible from the camera position.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">Educational angle is good for search (&#x27;airshow safety&#x27;) but the exclamation mark and format feel generic.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Blurred top/bottom with small distant plane — nearly unreadable at phone scale.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Open on engine/propeller close-up — SHOW the actual warm-up process</div>
+<div class="rm-action">Cut between 3+ angles minimum — static single-shot kills retention in Shorts</div>
+<div class="rm-action">Reshoot concept as &#x27;POV: Starting my 300hp aerobatic engine&#x27; with close-up of hands on controls</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/BNSbJdrl9aY/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>This felt like a space flight</h3>
+          <div class="vid-meta">
+            <span>Short · 0:17</span>
+            <span>2.4K views</span>
+            <span>2026-05-20</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg weak" style="flex:20" title="Strong concept but crushing darkness makes it nearly unreadable at thumbnail scale">Hook</div><div class="arc-seg weak" style="flex:50" title="City lights shifting creates subtle motion and wonder but too dark">Build</div><div class="arc-seg weak" style="flex:30" title="Emotional resonance of night flight but visibility too low to land">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Hook: Strong concept but crushing darkness makes it nearly unreada…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Build: City lights shifting creates subtle motion and wonder but to…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Climax: Emotional resonance of night flight but visibility too low t…</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Concept is strong, execution fails. Darkness kills readability on mobile in bright environments.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">The concept — night flight over city lights feeling like space — is genuinely evocative. But the execution is too dark to deliver on the promise.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">Emotionally resonant title that creates curiosity. &#x27;Space flight&#x27; is a strong hook word.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Nearly black. At thumbnail scale this is unreadable. Would look like a loading error in a Shorts feed.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Boost exposure/shadows in post — city lights should GLOW</div>
+<div class="rm-action">Add one text overlay to anchor the emotion</div>
+<div class="rm-action">Reshoot at dusk (not full dark) so cockpit interior and city lights are both visible</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/fMh5fEAnrtc/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>What it takes</h3>
+          <div class="vid-meta">
+            <span>Short · 0:11</span>
+            <span>1.9K views</span>
+            <span>2026-05-25</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-mid">Room to grow</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg strong" style="flex:25" title="Dynamic cockpit footage with another plane visible — immediate action">Hook</div><div class="arc-seg strong" style="flex:40" title="Glitch/chromatic aberration effect is stylish and intentional">Build</div><div class="arc-seg strong" style="flex:25" title="Toggle-list graphic (SUCCESS/RISK/DISCIPLINE) earns watch time">Climax</div><div class="arc-seg missed" style="flex:10" title="No CTA present">CTA</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--green)"></span>Hook: Dynamic cockpit footage with another plane visible — immedia…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Build: Glitch/chromatic aberration effect is stylish and intentiona…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Climax: Toggle-list graphic (SUCCESS/RISK/DISCIPLINE) earns watch ti…</span><span><span class="arc-legend-dot" style="background:var(--red)"></span>CTA: No CTA present</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Strong opening — dynamic cockpit footage with formation flying visible. Immediate action.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Best creative vision of the low-performers. Dynamic footage + intentional glitch effect + conceptual text overlay = complete creative package.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">&#x27;What it takes&#x27; is vague and unsearchable. Doesn&#x27;t hint at aviation, aerobatics, or the visual spectacle inside.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Cockpit action shot with visible effects — more distinctive than static flight footage.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Add dark semi-transparent bar behind text list to boost legibility</div>
+<div class="rm-action">Retitle: &#x27;What it takes to be an aerobatic champion&#x27; — add search context</div>
+<div class="rm-action">This editing style should be your template for motivational content</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/vxvd9NLytmQ/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>…</h3>
+          <div class="vid-meta">
+            <span>Short · 0:15</span>
+            <span>1.9K views</span>
+            <span>2026-05-27</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg missed" style="flex:30" title="Opens on completely black frame — dead on arrival">Hook</div><div class="arc-seg weak" style="flex:30" title="Phone notification concept is clever but takes too long to reveal">Setup</div><div class="arc-seg strong" style="flex:40" title="Cockpit formation shot is genuinely great but buried">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--red)"></span>Hook: Opens on completely black frame — dead on arrival</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Setup: Phone notification concept is clever but takes too long to r…</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Climax: Cockpit formation shot is genuinely great but buried</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Frame 1 is completely black. Viewers scroll past in 0.3 seconds.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Clever concept (phone → airplane mode → actual flying) but the execution buries the payoff. The cockpit formation shot at the end is the best frame and should lead.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">A literal ellipsis &#x27;…&#x27; as a title. Zero search discoverability, zero curiosity, zero context. This is the worst possible title choice.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Nearly black. Completely invisible in a Shorts feed.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Swap the order — open on the cockpit formation shot, THEN cut to the phone</div>
+<div class="rm-action">Give it an actual title: &#x27;Airplane mode hits different when you&#x27;re a pilot&#x27;</div>
+<div class="rm-action">Never open on a black frame in Shorts</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/WbJS40p-VBY/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>My get away</h3>
+          <div class="vid-meta">
+            <span>Short · 0:17</span>
+            <span>1.7K views</span>
+            <span>2026-05-21</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg missed" style="flex:20" title="Opens on blurry blown-out mess with iPhone camera UI visible — breaks immersion">Hook</div><div class="arc-seg weak" style="flex:40" title="Camera app record button visible — screams &#x27;accidental footage&#x27;">Build</div><div class="arc-seg strong" style="flex:40" title="Sunset + spinning propeller is genuinely beautiful with warm color palette">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--red)"></span>Hook: Opens on blurry blown-out mess with iPhone camera UI visible…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Build: Camera app record button visible — screams &#x27;accidental …</span><span><span class="arc-legend-dot" style="background:var(--green)"></span>Climax: Sunset + spinning propeller is genuinely beautiful with warm…</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">iPhone camera UI in Frame 1 = immediate amateur signal. The beautiful footage deserves better framing.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">The sunset propeller shot is genuinely beautiful — warm palette, emotional resonance. But it&#x27;s buried behind camera UI artifacts that destroy the premium feel.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">&#x27;My get away&#x27; is grammatically wrong (should be &#x27;getaway&#x27;), vague, and unsearchable.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Blurry sunset could work thematically but the camera UI overlay kills it.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Cut the first 2-3 seconds entirely — start on the clean propeller-at-sunset shot</div>
+<div class="rm-action">Never show camera UI in published content — crop or edit it out</div>
+<div class="rm-action">Retitle: &#x27;Sunset from the cockpit of my aerobatic plane&#x27;</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+<div class="vid-card">
+      <div class="vid-hero" onclick="this.closest('.vid-card').querySelector('.vid-details').toggleAttribute('hidden');this.closest('.vid-card').querySelector('.vid-toggle').textContent=this.closest('.vid-card').querySelector('.vid-details').hasAttribute('hidden')?'▼ More detail':'▲ Less detail'">
+        <img class="vid-thumb" src="https://i.ytimg.com/vi/SF4uXcn3ezY/hqdefault.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2040,#0979ff)'">
+        <div class="vid-thumb-overlay">
+          <h3>This made me feel like I was in space</h3>
+          <div class="vid-meta">
+            <span>Short · 0:17</span>
+            <span>1.5K views</span>
+            <span>2026-05-23</span>
+          </div>
+        </div>
+        <div class="vid-verdict verdict-weak">Needs work</div>
+      </div>
+      <div class="vid-scores"><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-lbl">Title</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-lbl">Thumb</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Hook</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-lbl">Story</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-lbl">CTA</div>
+        </div><div class="vid-score-item">
+          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-lbl">Prod</div>
+        </div></div>
+      <div class="story-arc">
+      <div class="story-arc-label">Story Framework</div>
+      <div class="arc-bar"><div class="arc-seg weak" style="flex:25" title="Dark cockpit silhouette — concept strong but unreadable on mobile">Hook</div><div class="arc-seg weak" style="flex:50" title="City lights shifting — subtle motion but too dark to appreciate">Build</div><div class="arc-seg weak" style="flex:25" title="Emotional resonance but visibility too low to land the impact">Climax</div></div>
+      <div class="arc-legend"><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Hook: Dark cockpit silhouette — concept strong but unreadable on m…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Build: City lights shifting — subtle motion but too dark to appreci…</span><span><span class="arc-legend-dot" style="background:var(--amber)"></span>Climax: Emotional resonance but visibility too low to land the impac…</span></div>
+    </div>
+      <div class="vid-details" hidden>
+        <div style="padding:16px 20px 0">
+          <div class="detail-grid"><div class="detail-cell">
+              <div class="dc-label">Opening Hook</div>
+              <div class="dc-text">Dark silhouette might work on a cinema screen but on a phone in daylight, this is a scroll-past.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Visual Storytelling</div>
+              <div class="dc-text">Same night-flight concept executed poorly. The cockpit interior is 60% dark void. City lights are muddy. The feeling of space flight doesn&#x27;t translate to the small screen.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Title Analysis</div>
+              <div class="dc-text">Emotionally evocative but the video can&#x27;t deliver on the promise visually.</div>
+            </div><div class="detail-cell">
+              <div class="dc-label">Thumbnail</div>
+              <div class="dc-text">Nearly black — worst thumbnail in the set. Unreadable at any scale.</div>
+            </div></div>
+          <div class="detail-action">
+          <div class="da-label">→ Actions</div>
+          <div class="rm-action">Night content needs significant exposure boost in post</div>
+<div class="rm-action">Add text overlay to anchor the emotion since visuals can&#x27;t carry it alone</div>
+<div class="rm-action">Consider: this concept might work better as a photo with caption or a well-lit cockpit with city lights reflection</div>
+        </div>
+          <div style="margin-top:12px">
+      <div class="editable" contenteditable="true" data-placeholder="Coach notes for this video…" style="min-height:40px;font-size:13px"></div>
+    </div>
+        </div>
+      </div>
+      <button class="vid-toggle" onclick="event.stopPropagation()">▼ More detail</button>
+    </div>
+  </div>
+
+  <!-- ═══ COACH NOTES ═══ -->
+  <div class="section">
+    <div class="coach-note">
+      <h3>Coach's Notes</h3>
+      <div class="editable" contenteditable="true" data-placeholder="Add your personal observations, context from 1:1 calls, and anything the data doesn't capture…"></div>
+    </div>
+  </div>
+
+  <!-- ═══ GROWTH ROADMAP ═══ -->
+  <div class="section">
+    <div class="section-label">Growth Roadmap</div>
+    <div class="roadmap-card">
+      <h2>Your Path Forward</h2>
+      <p>Based on this month's patterns and your coaching goals.</p>
+      <div class="rm-phase">
+          <div class="rm-dot-col"><div class="rm-dot"></div><div class="rm-line"></div></div>
+          <div class="rm-content">
+            <div class="rm-time">Phase 1 — Days 1–14</div>
+            <div class="rm-title">Stop the Bleeding: Fix the Fundamentals</div>
+            <div class="rm-desc">Eliminate every technical and structural mistake that is actively killing retention and discoverability. No new strategies until the floor is solid. Every upload from this point forward must pass a basic quality gate before going live.</div>
+            <div class="rm-actions"><div class="rm-action">Audit all existing Shorts and bulk-update titles using searchable keyword structures — replace vague titles like &#x27;…&#x27; and &#x27;nuff said&#x27; with high-intent phrases such as &#x27;Aerobatic pilot pulls 8Gs at 200mph&#x27; or &#x27;What a snap roll looks like from inside the cockpit&#x27;</div>
+<div class="rm-action">Create a pre-upload checklist: (1) First frame is bright, sharp, and action-forward — no dark or blurry openers, (2) Title contains at least one searchable keyword, (3) A CTA exists somewhere in the video</div>
+<div class="rm-action">Re-edit the 2 near-invisible night videos using exposure correction and contrast boosting in post — reupload with corrected thumbnails and keyword-rich titles to salvage any residual traffic potential</div>
+<div class="rm-action">Record a simple CTA template — a 1-second end-card with voiceover saying &#x27;Subscribe if you fly or wish you did&#x27; — and add this asset to every future Short as a non-negotiable standard</div>
+<div class="rm-action">Reverse-engineer the 27K top performer: document the exact structure — hook type, first visual, audio cue, tension beat timing, resolution moment — and turn it into a repeatable 11-second script framework for all future Shorts</div>
+<div class="rm-action">Identify the 5 best unused raw clips in the existing footage library that open on high-contrast, motion-filled frames — these become the fast-follow content queue for Phase 2</div></div>
+          </div>
+        </div>
+<div class="rm-phase">
+          <div class="rm-dot-col"><div class="rm-dot"></div><div class="rm-line"></div></div>
+          <div class="rm-content">
+            <div class="rm-time">Phase 2 — Days 15–60</div>
+            <div class="rm-title">Build the Machine: Systemize What Works</div>
+            <div class="rm-desc">Take the proven 11-second pattern-interrupt framework and scale it into a consistent production system. Introduce intentional editing as a standard — not an occasional experiment. Test 3 distinct content pillars to find which one drives subscriber conversion, not just views.</div>
+            <div class="rm-actions"><div class="rm-action">Produce 3 Shorts per week using the documented 11-second framework: Beat 1 — disorienting or extreme visual hook in frames 1–2, Beat 2 — context drop (&#x27;this is a snap roll at 200mph&#x27;), Beat 3 — tension escalation (G-force, proximity, speed data overlay), Beat 4 — payoff or unexpected resolution. Never open on a static or dark frame again.</div>
+<div class="rm-action">Establish 3 content pillars and rotate weekly: Pillar A — Raw danger/skill (closest to the 27K winner, pure aerobatic footage with data overlays), Pillar B — Education/myth-busting (&#x27;what pilots actually feel during a loop&#x27;), Pillar C — Behind-the-scenes human story (&#x27;why I chose aerobatics over airlines&#x27;). Track CTR and subscriber conversion rate per pillar separately.</div>
+<div class="rm-action">Add intentional editing elements to every video as a baseline — glitch transitions on impact moments, speed-ramping on pull-outs, white-flash cuts on inverted maneuvers, and G-force or altitude text overlays synced to the most intense frame. These are not optional flourishes — they are the proven performance differentiators.</div>
+<div class="rm-action">A/B test CTA placement across 6 videos: test 3 with mid-video CTA (at peak tension moment) and 3 with end-card CTA — measure which placement drives more subscribers per 1000 views and standardize the winner for the rest of the phase</div>
+<div class="rm-action">Fix the night content problem permanently — either shoot night flights with supplemental cockpit lighting and a higher-bitrate camera setting, or reframe night content as silhouette/instrument-focused storytelling that makes darkness intentional rather than a technical failure</div>
+<div class="rm-action">Post one &#x27;process Short&#x27; per month showing the editing or flying prep behind a viral clip — this builds parasocial trust, performs well with algorithm because it recycles high-performing footage, and attracts subscribers who want more than highlight reels</div></div>
+          </div>
+        </div>
+<div class="rm-phase">
+          <div class="rm-dot-col"><div class="rm-dot"></div></div>
+          <div class="rm-content">
+            <div class="rm-time">Phase 3 — Days 61–90</div>
+            <div class="rm-title">Compound the Growth: Optimize for Subscribers, Not Just Views</div>
+            <div class="rm-desc">Views without subscribers are a leaking bucket. Phase 3 shifts the primary KPI from view count to subscriber conversion rate. Use data from Phase 2 pillar testing to double down on the highest-converting content type, introduce one channel-level hook to drive follow-through, and begin building a content ecosystem where each Short pulls viewers toward wanting more.</div>
+            <div class="rm-actions"><div class="rm-action">Analyze Phase 2 data — identify which of the 3 pillars produced the highest subscriber-per-view ratio, not just the highest view count. Increase that pillar&#x27;s posting frequency to 2x per week and reduce the lowest-converting pillar to once every 2 weeks</div>
+<div class="rm-action">Create a channel-level hook series — a named, recurring Short format that viewers can anticipate, such as &#x27;60 Seconds of G-Force&#x27; or &#x27;Cockpit Confessions.&#x27; A recognizable series title gives casual viewers a reason to subscribe so they don&#x27;t miss the next installment — test 3 episodes and measure repeat viewer rate</div>
+<div class="rm-action">Introduce a pinned comment CTA strategy — on every new Short, pin a comment within the first 30 minutes of posting that adds context or poses a question (&#x27;Drop a ✈️ if you&#x27;ve ever wondered what 8Gs actually feels like&#x27;) to boost early engagement signals and improve algorithmic distribution</div>
+<div class="rm-action">Build a 30-day content calendar for month 4 based entirely on what the data shows — no guessing, no vague titles, no static openers. Each planned video should have a working title with a target keyword, a defined pillar, a hook type selected from the validated framework, and a scheduled upload date</div>
+<div class="rm-action">Set concrete 90-day benchmarks to evaluate against before month 4 planning: target 40K subscribers (78% growth), average Short retention above 75%, at least one Short crossing 100K views by deploying the proven framework at higher volume, and subscriber conversion rate of 1 new sub per 300 views across all Phase 3 content</div></div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- ═══ ACTION CHECKLIST ═══ -->
+  <div class="section">
+    <div class="checklist-card">
+      <h2>✅ Action Checklist</h2>
+      <div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>Use this exact hook formula (confusion → reveal → payoff) on future cockpit content</strong><span>From: Blue Angels Sneak Pass</span></div>
+    </div>
+<div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>End on the arrival — show the airshow from the air or the landing approach for a payoff</strong><span>From: On my way to Vero Beach Airshow</span></div>
+    </div>
+<div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>Open on the smoke-trail formation shot (currently at 35% mark) — lead with the best visual</strong><span>From: Blue angels… nuff said</span></div>
+    </div>
+<div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>Open on engine/propeller close-up — SHOW the actual warm-up process</strong><span>From: Engine Warm-up: Crucial for Airshow Safety!</span></div>
+    </div>
+<div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>Boost exposure/shadows in post — city lights should GLOW</strong><span>From: This felt like a space flight</span></div>
+    </div>
+<div class="cl-item">
+      <div class="cl-box"></div>
+      <div class="cl-text"><strong>Add dark semi-transparent bar behind text list to boost legibility</strong><span>From: What it takes</span></div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ═══ COACH FINAL NOTES ═══ -->
+  <div class="section">
+    <div class="coach-note">
+      <h3>Looking Ahead — Next Month</h3>
+      <div class="editable" contenteditable="true" data-placeholder="What should this creator focus on before your next 1:1? Add goals, experiments to run, or content to plan…"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>vidIQ</strong><br>
+    May 2026 · Aarron Deliu · Prepared by your coaching team<br>
+    <span style="opacity:.5">Confidential — for coaching use only</span>
+  </div>
+
+</div>
+
+<script>
+// Toggle video details
+document.querySelectorAll('.vid-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const details = btn.previousElementSibling;
+    const hidden = details.hasAttribute('hidden');
+    if (hidden) { details.removeAttribute('hidden'); btn.textContent = '▲ Less detail'; }
+    else { details.setAttribute('hidden',''); btn.textContent = '▼ More detail'; }
+  });
+});
+// Checklist toggle
+document.querySelectorAll('.cl-box').forEach(box => {
+  box.addEventListener('click', () => box.classList.toggle('checked'));
+});
+</script>
+</body>
+</html>
