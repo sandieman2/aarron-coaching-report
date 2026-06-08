@@ -80,6 +80,26 @@
     .briefing h2 { font-size:20px; font-weight:800; line-height:1.3; margin-bottom:8px; }
     .briefing p { font-size:15px; line-height:1.7; color:var(--text-2); }
 
+    /* ── GOAL TRACKING ── */
+    .goal-card {
+      background:var(--surface); border-radius:var(--radius); padding:24px;
+      box-shadow:0 1px 3px rgba(0,0,0,.04); border:1px solid var(--border);
+    }
+    .goal-card h2 { font-size:16px; font-weight:800; margin-bottom:6px; }
+    .goal-statement {
+      font-size:14px; line-height:1.6; color:var(--text-2);
+      padding:10px 14px; background:var(--bg-alt); border-radius:10px;
+      border:2px dashed var(--border); margin-bottom:14px;
+    }
+    .goal-progress { display:flex; gap:8px; align-items:center; margin-top:10px; }
+    .goal-bar-track {
+      flex:1; height:10px; background:var(--border); border-radius:6px; overflow:hidden;
+    }
+    .goal-bar-fill {
+      height:100%; border-radius:6px; transition:width .4s;
+    }
+    .goal-pct { font-size:14px; font-weight:800; min-width:40px; text-align:right; }
+
     /* ── SCORE OVERVIEW ── */
     .scores-row {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
@@ -145,7 +165,7 @@
       flex:1; text-align:center; padding:14px 6px; border-right:1px solid var(--border);
     }
     .vid-score-item:last-child { border-right:none; }
-    .vid-score-val { font-size:20px; font-weight:800; }
+    .vid-score-val { font-size:20px; font-weight:800; cursor:text; }
     .vid-score-lbl { font-size:10px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.4px; margin-top:2px; }
 
     /* Story arc */
@@ -315,8 +335,23 @@
   <!-- ═══ STRATEGIC BRIEFING ═══ -->
   <div class="briefing">
     <span class="tag">This Month's Strategic Focus</span>
-    <h2>Your best videos prove the formula — you&#x27;re just not repeating it.</h2>
-    <p>&quot;Blue Angels Sneak Pass&quot; hit 27K views with a 9/10 hook and story because the action *was* the hook — no explanation needed, just an immediate visceral moment. Every video below 4K views shares the same failure: the opening frame either hides you (engine warm-up from 200 feet away), kills the screen (black first frame on &quot;…&quot;), or breaks the implicit promise of the title (&quot;This felt like a space flight&quot; opens dark and textureless). Next month, treat your first frame as a contract — if the title says space flight, frame zero needs to look like space flight.</p>
+    <h2>Your best content proves the formula — your worst content ignores it entirely.</h2>
+    <p>&quot;Blue Angels Sneak Pass&quot; hit 27K views with a 9/10 hook and 9/10 story because the visuals *were* the payoff — but it still left views on the table with zero CTA, meaning you&#x27;re not converting that momentum into subscribers. Meanwhile, your bottom four videos (&quot;…&quot;, &quot;This felt like a space flight,&quot; &quot;Engine Warm-up,&quot; &quot;This made me feel like I was in space&quot;) all share the same cluster of killers: black or underexposed first frames, no text overlays, and titles that either say nothing or find nothing in search. You already know how to make a 9/10 Short — the only question is why you&#x27;re still publishing 2/10s alongside it.</p>
+  </div>
+
+  <!-- ═══ GOAL TRACKING ═══ -->
+  <div class="section">
+    <div class="section-label">Goal Progress</div>
+    <div class="goal-card">
+      <h2>🎯 Creator's Goal</h2>
+      <div class="goal-statement" contenteditable="true">Hi, I have not much to Say... but signed up...  Got a lot of content coming out. Just beginning and learning the long-form side of things. Focus is to grow the channel, make epic content, have fun with it, and build a presence as an aviation creator... Any advice is really appreciated...  Bit about me I am a full time Airshow Pilot and Air race pilot. I perform all over the world, have won a bunch of international competitions in aerobatics and racing... Now my passion is to give back and connec</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:4px">This Month's Progress</div>
+      <div class="goal-progress">
+        <div class="goal-bar-track"><div class="goal-bar-fill" style="width:35%;background:var(--amber)"></div></div>
+        <div class="goal-pct" style="color:var(--amber)">35%</div>
+      </div>
+      <div class="editable" contenteditable="true" data-placeholder="How this month’s content moved the needle toward the goal…" style="margin-top:12px;min-height:40px;font-size:13px">The 9 Shorts show real initiative toward building a presence, and 27,710 views on the top video proves there&#x27;s genuine audience appetite for your content. However, an average hook score of 4.</div>
+    </div>
   </div>
 
   <!-- ═══ OVERALL SCORES ═══ -->
@@ -367,17 +402,6 @@
       </div>
       <div class="score-label">Story</div>
     </div>
-<div class="score-cell">
-      <div class="donut-wrap">
-        <svg viewBox="0 0 64 64">
-          <circle class="donut-bg" cx="32" cy="32" r="26"/>
-          <circle class="donut-val" cx="32" cy="32" r="26"
-            stroke="var(--red-ring)" stroke-dasharray="22.9 140.5"/>
-        </svg>
-        <div class="donut-num" style="color:var(--red)">1.4</div>
-      </div>
-      <div class="score-label">CTA</div>
-    </div>
     </div>
   </div>
 
@@ -399,20 +423,17 @@
         <div class="vid-verdict verdict-strong">Strong</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">7</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">6</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">9</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">9</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">9</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">9</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -462,20 +483,17 @@
         <div class="vid-verdict verdict-mid">Room to grow</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">6</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">7</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">6</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -525,20 +543,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">2</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -588,20 +603,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">2</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -651,20 +663,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">6</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -714,20 +723,17 @@
         <div class="vid-verdict verdict-mid">Room to grow</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">7</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
+          <div class="vid-score-val" style="color:var(--green)" contenteditable="true">7</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -777,20 +783,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">1</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">2</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">2</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -840,20 +843,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">5</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -903,20 +903,17 @@
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">6</div>
+          <div class="vid-score-val" style="color:var(--amber)" contenteditable="true">6</div>
           <div class="vid-score-lbl">Title</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">2</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">2</div>
           <div class="vid-score-lbl">Thumb</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">3</div>
           <div class="vid-score-lbl">Hook</div>
         </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
+          <div class="vid-score-val" style="color:var(--red)" contenteditable="true">4</div>
           <div class="vid-score-lbl">Story</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">1</div>
-          <div class="vid-score-lbl">CTA</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -957,7 +954,16 @@
   <div class="section">
     <div class="coach-note">
       <h3>Coach's Notes</h3>
-      <div class="editable" contenteditable="true" data-placeholder="Add your personal observations, context from 1:1 calls, and anything the data doesn't capture…"></div>
+      <div class="editable" contenteditable="true" data-placeholder="Add your personal observations, context from 1:1 calls, and anything the data doesn't capture…">2026-04-10 (user): Great to meet you too Anthony.
+I appreciate the feedback.
+11am EST time sounds great.
+See you then
+2026-04-13 (user): Automated message: Just a heads up that Anthony O is on a short break and is taking some time off. They&#x27;ll be back at their desk on April 14 and will respond to you then.
+2026-04-15 (user): Thanks I agree. Our next video we filmed.. has that heads up in the Intro hook., I start by saying this airshow is all about the race the vendenta I have against a jet truck or there abouts.... So hop
+2026-04-15 (user): was planning to post Thursday 12pm...
+
+2026-04-19 (user): made some small edits and posted video
+</div>
     </div>
   </div>
 
@@ -971,10 +977,10 @@
         <div class="rm-phase-card phase-1">
           <div class="rm-phase-num">1</div>
           <div class="rm-time">Next 2 Weeks</div>
-          <div class="rm-title">Stop the Bleeding: Fix What&#x27;s Killing Views</div>
-          <div class="rm-actions"><div class="rm-action">Replace all dark/blurry opening frames with your most visually striking shot.</div>
-<div class="rm-action">Retitle vague videos using searchable keywords like &#x27;aerobatic pilot&#x27; or &#x27;cockpit POV&#x27;.</div>
-<div class="rm-action">Add exposure correction to both underexposed night videos immediately.</div></div>
+          <div class="rm-title">Fix the Foundations</div>
+          <div class="rm-actions"><div class="rm-action">Open every Short on the single most visually striking frame available.</div>
+<div class="rm-action">Retitle all existing vague videos with searchable, curiosity-driven keywords.</div>
+<div class="rm-action">Add a one-line text overlay CTA in the final 2 seconds of each Short.</div></div>
           <div class="rm-edit">
             <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
@@ -982,10 +988,10 @@
 <div class="rm-phase-card phase-2">
           <div class="rm-phase-num">2</div>
           <div class="rm-time">Days 15–45</div>
-          <div class="rm-title">Build the System: Engineer Videos That Hook and Hold</div>
-          <div class="rm-actions"><div class="rm-action">Open every new Short with a pattern-interrupt in the first 2 seconds — no exceptions.</div>
-<div class="rm-action">Use the 4-beat tension arc: setup, escalation, peak, release — under 12 seconds.</div>
-<div class="rm-action">Add glitch effects or motion text overlays to every new video before posting.</div></div>
+          <div class="rm-title">Systematize What Works</div>
+          <div class="rm-actions"><div class="rm-action">Replicate the 11-second pattern-interrupt hook structure in every new Short.</div>
+<div class="rm-action">Build a 4-beat tension arc template and apply it to all new edits.</div>
+<div class="rm-action">Add glitch transitions or speed ramps to at least 2 videos per week.</div></div>
           <div class="rm-edit">
             <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
@@ -993,10 +999,10 @@
 <div class="rm-phase-card phase-3">
           <div class="rm-phase-num">3</div>
           <div class="rm-time">Days 46–90</div>
-          <div class="rm-title">Scale and Signal: Turn Momentum Into a Growing Channel</div>
-          <div class="rm-actions"><div class="rm-action">Identify your top 3 performing Shorts and recreate the format with new footage.</div>
-<div class="rm-action">Pin a comment on every video directing viewers to your best-performing Short.</div>
-<div class="rm-action">Introduce a recurring series format (e.g., &#x27;30-second maneuver breakdowns&#x27;) for repeat viewers.</div></div>
+          <div class="rm-title">Scale and Optimize</div>
+          <div class="rm-actions"><div class="rm-action">Analyze retention data and double down on the highest-performing hook style.</div>
+<div class="rm-action">Produce one &#x27;story arc&#x27; Short per week with a clear beginning, conflict, and resolution.</div>
+<div class="rm-action">Cross-post top-performing Shorts to Instagram Reels and TikTok for audience crossover.</div></div>
           <div class="rm-edit">
             <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
@@ -1009,29 +1015,30 @@
   <div class="section">
     <div class="checklist-card">
       <h2>✅ Action Checklist</h2>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:12px">✏️ Click any item to edit</div>
       <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>Use this exact hook formula (confusion → reveal → payoff) on future cockpit content</strong><span>From: Blue Angels Sneak Pass</span></div>
+      <div class="cl-text" contenteditable="true"><strong>Use this exact hook formula (confusion → reveal → payoff) on future cockpit content</strong><span>From: Blue Angels Sneak Pass</span></div>
     </div>
 <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>End on the arrival — show the airshow from the air or the landing approach for a payoff</strong><span>From: On my way to Vero Beach Airshow</span></div>
+      <div class="cl-text" contenteditable="true"><strong>End on the arrival — show the airshow from the air or the landing approach for a payoff</strong><span>From: On my way to Vero Beach Airshow</span></div>
     </div>
 <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>Open on the smoke-trail formation shot (currently at 35% mark) — lead with the best visual</strong><span>From: Blue angels… nuff said</span></div>
+      <div class="cl-text" contenteditable="true"><strong>Open on the smoke-trail formation shot (currently at 35% mark) — lead with the best visual</strong><span>From: Blue angels… nuff said</span></div>
     </div>
 <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>Open on engine/propeller close-up — SHOW the actual warm-up process</strong><span>From: Engine Warm-up: Crucial for Airshow Safety!</span></div>
+      <div class="cl-text" contenteditable="true"><strong>Open on engine/propeller close-up — SHOW the actual warm-up process</strong><span>From: Engine Warm-up: Crucial for Airshow Safety!</span></div>
     </div>
 <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>Boost exposure/shadows in post — city lights should GLOW</strong><span>From: This felt like a space flight</span></div>
+      <div class="cl-text" contenteditable="true"><strong>Boost exposure/shadows in post — city lights should GLOW</strong><span>From: This felt like a space flight</span></div>
     </div>
 <div class="cl-item">
       <div class="cl-box"></div>
-      <div class="cl-text"><strong>Add dark semi-transparent bar behind text list to boost legibility</strong><span>From: What it takes</span></div>
+      <div class="cl-text" contenteditable="true"><strong>Add dark semi-transparent bar behind text list to boost legibility</strong><span>From: What it takes</span></div>
     </div>
     </div>
   </div>
