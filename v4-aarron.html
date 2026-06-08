@@ -130,6 +130,14 @@
     .verdict-weak { background:var(--red-light); color:var(--red); }
 
     /* Score bar row inside video card */
+    /* Content type badges */
+    .type-badge {
+      position:absolute; top:12px; left:12px;
+      padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.3px;
+    }
+    .type-short { background:rgba(251,191,36,.9); color:#78350F; }
+    .type-long { background:rgba(9,121,255,.9); color:#fff; }
     .vid-scores {
       display:flex; gap:0; border-bottom:1px solid var(--border);
     }
@@ -215,21 +223,35 @@
     }
     .roadmap-card h2 { font-size:18px; font-weight:800; margin-bottom:4px; }
     .roadmap-card > p { font-size:13px; color:var(--text-3); margin-bottom:20px; }
-    .rm-phase { display:flex; gap:16px; padding:16px 0; border-top:1px solid var(--border); }
-    .rm-phase:first-of-type { border-top:none; }
-    .rm-dot-col { display:flex; flex-direction:column; align-items:center; padding-top:2px; }
-    .rm-dot { width:14px; height:14px; border-radius:50%; border:3px solid var(--iq-blue); background:#fff; flex-shrink:0; }
-    .rm-line { flex:1; width:2px; background:var(--border); margin-top:4px; }
-    .rm-content { flex:1; }
+    .rm-phases { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+    .rm-phase-card {
+      border:1px solid var(--border); border-radius:14px; padding:20px;
+      position:relative; overflow:hidden;
+    }
+    .rm-phase-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    }
+    .rm-phase-card.phase-1::before { background:var(--red); }
+    .rm-phase-card.phase-2::before { background:var(--amber); }
+    .rm-phase-card.phase-3::before { background:var(--green); }
+    .rm-phase-num {
+      width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:800; color:#fff; margin-bottom:10px;
+    }
+    .phase-1 .rm-phase-num { background:var(--red); }
+    .phase-2 .rm-phase-num { background:var(--amber); }
+    .phase-3 .rm-phase-num { background:var(--green); }
     .rm-time { font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--iq-blue); }
     .rm-title { font-size:15px; font-weight:700; margin-top:2px; }
-    .rm-desc { font-size:13px; color:var(--text-2); margin-top:4px; line-height:1.5; }
-    .rm-actions { margin-top:8px; }
+    .rm-actions { margin-top:10px; }
     .rm-action {
-      display:flex; align-items:baseline; gap:8px; padding:3px 0;
+      display:flex; align-items:baseline; gap:8px; padding:4px 0;
       font-size:13px; color:var(--text-1); line-height:1.5;
     }
     .rm-action::before { content:'→'; color:var(--iq-blue); font-weight:700; flex-shrink:0; }
+    .rm-edit {
+      margin-top:12px; border-top:1px dashed var(--border); padding-top:10px;
+    }
 
     /* ── CHECKLIST ── */
     .checklist-card {
@@ -293,8 +315,8 @@
   <!-- ═══ STRATEGIC BRIEFING ═══ -->
   <div class="briefing">
     <span class="tag">This Month's Strategic Focus</span>
-    <h2>Your best content proves the formula — now you&#x27;re just ignoring it.</h2>
-    <p>&quot;Blue Angels Sneak Pass&quot; hit 27K views with a 9/10 hook and story because the subject filled the frame, the moment was undeniable, and the content delivered exactly what the title promised — yet you&#x27;ve replicated none of those conditions since. &quot;Blue Angels… nuff said&quot; scored a 2/10 hook on a subject that should be a guaranteed attention-grab, killed by a title-to-first-frame disconnect and a subject so small in frame it reads as amateur footage. Next month, treat &quot;Sneak Pass&quot; as your production checklist: maximum subject-to-frame ratio, title that mirrors the first visual, peak moment as the thumbnail — before you film anything else.</p>
+    <h2>Your best videos prove the formula — you&#x27;re just not repeating it.</h2>
+    <p>&quot;Blue Angels Sneak Pass&quot; hit 27K views with a 9/10 hook and story because the action *was* the hook — no explanation needed, just an immediate visceral moment. Every video below 4K views shares the same failure: the opening frame either hides you (engine warm-up from 200 feet away), kills the screen (black first frame on &quot;…&quot;), or breaks the implicit promise of the title (&quot;This felt like a space flight&quot; opens dark and textureless). Next month, treat your first frame as a contract — if the title says space flight, frame zero needs to look like space flight.</p>
   </div>
 
   <!-- ═══ OVERALL SCORES ═══ -->
@@ -356,17 +378,6 @@
       </div>
       <div class="score-label">CTA</div>
     </div>
-<div class="score-cell">
-      <div class="donut-wrap">
-        <svg viewBox="0 0 64 64">
-          <circle class="donut-bg" cx="32" cy="32" r="26"/>
-          <circle class="donut-val" cx="32" cy="32" r="26"
-            stroke="var(--amber-ring)" stroke-dasharray="81.7 81.7"/>
-        </svg>
-        <div class="donut-num" style="color:var(--amber)">5.0</div>
-      </div>
-      <div class="score-label">Production</div>
-    </div>
     </div>
   </div>
 
@@ -384,6 +395,7 @@
             <span>2026-05-19</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-strong">Strong</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -401,9 +413,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">2</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -449,6 +458,7 @@
             <span>2026-05-15</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-mid">Room to grow</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -466,9 +476,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">2</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -514,6 +521,7 @@
             <span>2026-05-25</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -531,9 +539,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">1</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -579,6 +584,7 @@
             <span>2026-05-14</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -596,9 +602,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">2</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">4</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -644,6 +647,7 @@
             <span>2026-05-20</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -661,9 +665,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">1</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -709,6 +710,7 @@
             <span>2026-05-25</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-mid">Room to grow</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -726,9 +728,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">2</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--green)">7</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -774,6 +773,7 @@
             <span>2026-05-27</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -791,9 +791,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">1</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -839,6 +836,7 @@
             <span>2026-05-21</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -856,9 +854,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">1</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--amber)">5</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -904,6 +899,7 @@
             <span>2026-05-23</span>
           </div>
         </div>
+        <div class="type-badge type-short">Short</div>
         <div class="vid-verdict verdict-weak">Needs work</div>
       </div>
       <div class="vid-scores"><div class="vid-score-item">
@@ -921,9 +917,6 @@
         </div><div class="vid-score-item">
           <div class="vid-score-val" style="color:var(--red)">1</div>
           <div class="vid-score-lbl">CTA</div>
-        </div><div class="vid-score-item">
-          <div class="vid-score-val" style="color:var(--red)">3</div>
-          <div class="vid-score-lbl">Prod</div>
         </div></div>
       <div class="story-arc">
       <div class="story-arc-label">Story Framework</div>
@@ -974,47 +967,41 @@
     <div class="roadmap-card">
       <h2>Your Path Forward</h2>
       <p>Based on this month's patterns and your coaching goals.</p>
-      <div class="rm-phase">
-          <div class="rm-dot-col"><div class="rm-dot"></div><div class="rm-line"></div></div>
-          <div class="rm-content">
-            <div class="rm-time">Phase 1 — Days 1–14</div>
-            <div class="rm-title">Stop the Bleeding: Fix the Fundamentals</div>
-            <div class="rm-desc">Eliminate every technical and structural mistake that is actively killing retention and discoverability. No new strategies until the floor is solid. Every upload from this point forward must pass a basic quality gate before going live.</div>
-            <div class="rm-actions"><div class="rm-action">Audit all existing Shorts and bulk-update titles using searchable keyword structures — replace vague titles like &#x27;…&#x27; and &#x27;nuff said&#x27; with high-intent phrases such as &#x27;Aerobatic pilot pulls 8Gs at 200mph&#x27; or &#x27;What a snap roll looks like from inside the cockpit&#x27;</div>
-<div class="rm-action">Create a pre-upload checklist: (1) First frame is bright, sharp, and action-forward — no dark or blurry openers, (2) Title contains at least one searchable keyword, (3) A CTA exists somewhere in the video</div>
-<div class="rm-action">Re-edit the 2 near-invisible night videos using exposure correction and contrast boosting in post — reupload with corrected thumbnails and keyword-rich titles to salvage any residual traffic potential</div>
-<div class="rm-action">Record a simple CTA template — a 1-second end-card with voiceover saying &#x27;Subscribe if you fly or wish you did&#x27; — and add this asset to every future Short as a non-negotiable standard</div>
-<div class="rm-action">Reverse-engineer the 27K top performer: document the exact structure — hook type, first visual, audio cue, tension beat timing, resolution moment — and turn it into a repeatable 11-second script framework for all future Shorts</div>
-<div class="rm-action">Identify the 5 best unused raw clips in the existing footage library that open on high-contrast, motion-filled frames — these become the fast-follow content queue for Phase 2</div></div>
+      <div class="rm-phases">
+        <div class="rm-phase-card phase-1">
+          <div class="rm-phase-num">1</div>
+          <div class="rm-time">Next 2 Weeks</div>
+          <div class="rm-title">Stop the Bleeding: Fix What&#x27;s Killing Views</div>
+          <div class="rm-actions"><div class="rm-action">Replace all dark/blurry opening frames with your most visually striking shot.</div>
+<div class="rm-action">Retitle vague videos using searchable keywords like &#x27;aerobatic pilot&#x27; or &#x27;cockpit POV&#x27;.</div>
+<div class="rm-action">Add exposure correction to both underexposed night videos immediately.</div></div>
+          <div class="rm-edit">
+            <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
         </div>
-<div class="rm-phase">
-          <div class="rm-dot-col"><div class="rm-dot"></div><div class="rm-line"></div></div>
-          <div class="rm-content">
-            <div class="rm-time">Phase 2 — Days 15–60</div>
-            <div class="rm-title">Build the Machine: Systemize What Works</div>
-            <div class="rm-desc">Take the proven 11-second pattern-interrupt framework and scale it into a consistent production system. Introduce intentional editing as a standard — not an occasional experiment. Test 3 distinct content pillars to find which one drives subscriber conversion, not just views.</div>
-            <div class="rm-actions"><div class="rm-action">Produce 3 Shorts per week using the documented 11-second framework: Beat 1 — disorienting or extreme visual hook in frames 1–2, Beat 2 — context drop (&#x27;this is a snap roll at 200mph&#x27;), Beat 3 — tension escalation (G-force, proximity, speed data overlay), Beat 4 — payoff or unexpected resolution. Never open on a static or dark frame again.</div>
-<div class="rm-action">Establish 3 content pillars and rotate weekly: Pillar A — Raw danger/skill (closest to the 27K winner, pure aerobatic footage with data overlays), Pillar B — Education/myth-busting (&#x27;what pilots actually feel during a loop&#x27;), Pillar C — Behind-the-scenes human story (&#x27;why I chose aerobatics over airlines&#x27;). Track CTR and subscriber conversion rate per pillar separately.</div>
-<div class="rm-action">Add intentional editing elements to every video as a baseline — glitch transitions on impact moments, speed-ramping on pull-outs, white-flash cuts on inverted maneuvers, and G-force or altitude text overlays synced to the most intense frame. These are not optional flourishes — they are the proven performance differentiators.</div>
-<div class="rm-action">A/B test CTA placement across 6 videos: test 3 with mid-video CTA (at peak tension moment) and 3 with end-card CTA — measure which placement drives more subscribers per 1000 views and standardize the winner for the rest of the phase</div>
-<div class="rm-action">Fix the night content problem permanently — either shoot night flights with supplemental cockpit lighting and a higher-bitrate camera setting, or reframe night content as silhouette/instrument-focused storytelling that makes darkness intentional rather than a technical failure</div>
-<div class="rm-action">Post one &#x27;process Short&#x27; per month showing the editing or flying prep behind a viral clip — this builds parasocial trust, performs well with algorithm because it recycles high-performing footage, and attracts subscribers who want more than highlight reels</div></div>
+<div class="rm-phase-card phase-2">
+          <div class="rm-phase-num">2</div>
+          <div class="rm-time">Days 15–45</div>
+          <div class="rm-title">Build the System: Engineer Videos That Hook and Hold</div>
+          <div class="rm-actions"><div class="rm-action">Open every new Short with a pattern-interrupt in the first 2 seconds — no exceptions.</div>
+<div class="rm-action">Use the 4-beat tension arc: setup, escalation, peak, release — under 12 seconds.</div>
+<div class="rm-action">Add glitch effects or motion text overlays to every new video before posting.</div></div>
+          <div class="rm-edit">
+            <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
         </div>
-<div class="rm-phase">
-          <div class="rm-dot-col"><div class="rm-dot"></div></div>
-          <div class="rm-content">
-            <div class="rm-time">Phase 3 — Days 61–90</div>
-            <div class="rm-title">Compound the Growth: Optimize for Subscribers, Not Just Views</div>
-            <div class="rm-desc">Views without subscribers are a leaking bucket. Phase 3 shifts the primary KPI from view count to subscriber conversion rate. Use data from Phase 2 pillar testing to double down on the highest-converting content type, introduce one channel-level hook to drive follow-through, and begin building a content ecosystem where each Short pulls viewers toward wanting more.</div>
-            <div class="rm-actions"><div class="rm-action">Analyze Phase 2 data — identify which of the 3 pillars produced the highest subscriber-per-view ratio, not just the highest view count. Increase that pillar&#x27;s posting frequency to 2x per week and reduce the lowest-converting pillar to once every 2 weeks</div>
-<div class="rm-action">Create a channel-level hook series — a named, recurring Short format that viewers can anticipate, such as &#x27;60 Seconds of G-Force&#x27; or &#x27;Cockpit Confessions.&#x27; A recognizable series title gives casual viewers a reason to subscribe so they don&#x27;t miss the next installment — test 3 episodes and measure repeat viewer rate</div>
-<div class="rm-action">Introduce a pinned comment CTA strategy — on every new Short, pin a comment within the first 30 minutes of posting that adds context or poses a question (&#x27;Drop a ✈️ if you&#x27;ve ever wondered what 8Gs actually feels like&#x27;) to boost early engagement signals and improve algorithmic distribution</div>
-<div class="rm-action">Build a 30-day content calendar for month 4 based entirely on what the data shows — no guessing, no vague titles, no static openers. Each planned video should have a working title with a target keyword, a defined pillar, a hook type selected from the validated framework, and a scheduled upload date</div>
-<div class="rm-action">Set concrete 90-day benchmarks to evaluate against before month 4 planning: target 40K subscribers (78% growth), average Short retention above 75%, at least one Short crossing 100K views by deploying the proven framework at higher volume, and subscriber conversion rate of 1 new sub per 300 views across all Phase 3 content</div></div>
+<div class="rm-phase-card phase-3">
+          <div class="rm-phase-num">3</div>
+          <div class="rm-time">Days 46–90</div>
+          <div class="rm-title">Scale and Signal: Turn Momentum Into a Growing Channel</div>
+          <div class="rm-actions"><div class="rm-action">Identify your top 3 performing Shorts and recreate the format with new footage.</div>
+<div class="rm-action">Pin a comment on every video directing viewers to your best-performing Short.</div>
+<div class="rm-action">Introduce a recurring series format (e.g., &#x27;30-second maneuver breakdowns&#x27;) for repeat viewers.</div></div>
+          <div class="rm-edit">
+            <div class="editable" contenteditable="true" data-placeholder="Coach: adjust or add actions for this phase…" style="min-height:36px;font-size:12px"></div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
