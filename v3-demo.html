@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Creators · May 2026 Growth Report — vidIQ Coaching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --vidiq-blue: #0979FF;
+      --vidiq-purple: #5A06CB;
+      --vidiq-dark: #0F1629;
+      --vidiq-navy: #1A2040;
+      --text-primary: #0F1629;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --surface: #FFFFFF;
+      --surface-alt: #F8F9FC;
+      --surface-insight: #F0F4FF;
+      --border: #E5E7EB;
+      --border-light: #F3F4F6;
+      --green: #059669;
+      --green-bg: #ECFDF5;
+      --amber: #D97706;
+      --amber-bg: #FFFBEB;
+      --red: #DC2626;
+      --red-bg: #FEF2F2;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--surface-alt);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .report-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* === HEADER === */
+    .report-hero {
+      background: linear-gradient(135deg, var(--vidiq-dark) 0%, var(--vidiq-navy) 40%, var(--vidiq-blue) 100%);
+      color: white;
+      padding: 40px 32px 36px;
+      margin: 0 -16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .report-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(89,6,203,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .report-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(9,121,255,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-brand svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-creator {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.25);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar-fallback {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 3px solid rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .hero-details h1 {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .hero-details .hero-meta {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    .hero-period {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* === STRATEGIC BRIEFING (the "gold") === */
+    .strategic-briefing {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-top: -20px;
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid var(--vidiq-blue);
+    }
+
+    .strategic-briefing .briefing-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--vidiq-blue);
+      margin-bottom: 12px;
+    }
+
+    .strategic-briefing h2 {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .strategic-briefing .briefing-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* === SECTION === */
+    .report-section {
+      margin-top: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .section-header .section-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--border-light);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* === INSIGHT CARDS === */
+    .insight-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-light);
+    }
+
+    .insight-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .insight-priority {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .priority-high {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .priority-medium {
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .priority-win {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .insight-header {
+      padding: 20px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .insight-headline {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 10px;
+      padding: 0 24px;
+    }
+
+    .insight-body {
+      padding: 12px 24px 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .insight-action {
+      background: var(--surface-insight);
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .insight-action .action-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--vidiq-blue);
+      margin-bottom: 6px;
+    }
+
+    .insight-action .action-text {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+
+    /* === VIDEO DEEP DIVE === */
+    .video-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-light);
+    }
+
+    .video-card-header {
+      display: flex;
+      gap: 14px;
+      padding: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .video-card-header:hover {
+      background: var(--surface-alt);
+    }
+
+    .video-thumb {
+      width: 120px;
+      height: 68px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .video-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .video-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .video-card-verdict {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .verdict-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .verdict-strong { color: var(--green); }
+    .verdict-improve { color: var(--amber); }
+    .verdict-weak { color: var(--red); }
+
+    .video-expand-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+
+    details[open] .video-expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .video-deep-dive {
+      padding: 0 20px 20px;
+    }
+
+    .dive-section {
+      padding: 16px 0;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .dive-section:first-child {
+      border-top: none;
+    }
+
+    .dive-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .dive-content {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .dive-action {
+      background: var(--surface-insight);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 10px;
+    }
+
+    .dive-action strong {
+      color: var(--vidiq-blue);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .dive-action p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* === STRATEGY ROADMAP === */
+    .roadmap {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+
+    .roadmap-header {
+      padding: 24px 24px 0;
+    }
+
+    .roadmap-header h2 {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .roadmap-header p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .roadmap-timeline {
+      padding: 20px 24px 24px;
+    }
+
+    .roadmap-phase {
+      position: relative;
+      padding-left: 28px;
+      padding-bottom: 24px;
+    }
+
+    .roadmap-phase:last-child {
+      padding-bottom: 0;
+    }
+
+    .roadmap-phase::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 24px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .roadmap-phase:last-child::before {
+      display: none;
+    }
+
+    .roadmap-dot {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 3px solid var(--vidiq-blue);
+      background: var(--surface);
+    }
+
+    .roadmap-phase-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--vidiq-blue);
+      margin-bottom: 6px;
+    }
+
+    .roadmap-phase h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .roadmap-phase p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .roadmap-actions {
+      margin-top: 10px;
+    }
+
+    .roadmap-action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 4px 0;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .roadmap-action-item::before {
+      content: '→';
+      color: var(--vidiq-blue);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* === CHECKLIST === */
+    .checklist {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .checklist h2 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+
+    .checklist-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .checklist-text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .checklist-text strong {
+      display: block;
+      font-weight: 700;
+    }
+
+    .checklist-text span {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    /* === FOOTER === */
+    .report-footer {
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .report-footer .footer-logo {
+      font-weight: 800;
+      color: var(--vidiq-blue);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 640px) {
+      .report-hero { padding: 28px 20px 32px; }
+      .hero-details h1 { font-size: 20px; }
+      .strategic-briefing { padding: 20px; }
+      .insight-header { padding: 16px 18px 0; }
+      .insight-headline { padding: 0 18px; font-size: 15px; }
+      .insight-body { padding: 10px 18px 16px; }
+      .insight-action { padding: 14px 18px; }
+      .video-card-header { padding: 16px; }
+      .video-thumb { width: 100px; height: 56px; }
+      .video-card-title { font-size: 14px; }
+    }
+
+    /* Details/summary reset */
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+
+    /* Print styles */
+    @media print {
+      body { background: white; }
+      .report-hero { border-radius: 0; margin: 0; }
+      .video-card, .insight-card, .strategic-briefing, .roadmap, .checklist {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="report-container">
+
+    <!-- ===== HERO HEADER ===== -->
+    <div class="report-hero">
+      <div class="hero-brand">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        vidIQ Coaching
+      </div>
+      <div class="hero-creator">
+        <img class="hero-avatar" src="https://yt3.googleusercontent.com/LZeUOuOM8lzINkYAKi1X3pCQz1xsSD_EndPUR1vOGesaGavUtyM_-bCUq7Gld-LPX_R7uieWsA=s900-c-k-c0x00ffffff-no-rj" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="hero-avatar-fallback" style="display:none">YC</div>
+        <div class="hero-details">
+          <h1>YouTube Creators</h1>
+          <div class="hero-meta">10.2M subscribers · @youtubecreators</div>
+        </div>
+      </div>
+      <div class="hero-period">
+        📅 May 2026 Growth Report
+      </div>
+    </div>
+
+    <!-- ===== STRATEGIC BRIEFING ===== -->
+    <div class="strategic-briefing">
+      <div class="briefing-label">This Month's Strategic Focus</div>
+      <h2>Your best-performing videos teach creators to act, not just inform them.</h2>
+      <div class="briefing-body">
+        The clearest performance signal this month is the gap between &quot;Unique Reach, Live Countdown Stickers&quot; (1.68M views) and every other long-form video — and the difference isn&#x27;t topic, it&#x27;s instructional precision: concrete numbers, friction-reducing details, and step-by-step sequences that viewers can immediately replicate. Meanwhile, &quot;Brand Deal Desk: The Brand Deal Universe&quot; (4,878 views) and &quot;HOW TO: Create an Old Soul vs New Gen Slider Effect&quot; (6,471 views) both underperform because they spend their highest-attention opening seconds on introductions and conceptual framing instead of a demonstrable outcome that makes the viewer need to keep watching. Next month, treat the first 30 seconds of every video as a performance promise — show the completed result, state the specific creator outcome, then teach backwards from there.
+      </div>
+    </div>
+
+    <!-- ===== KEY INSIGHTS ===== -->
+    <div class="report-section">
+      <div class="section-header">
+        <h2>🎯 Key Insights</h2>
+        <span class="section-count">5 findings</span>
+      </div>
+
+      
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-priority priority-high">🔴 Fix This</span>
+        </div>
+        <div class="insight-headline">The Most Valuable Feature Is Buried in Every Video — Reorder for Money-First Hooks</div>
+        <div class="insight-body">Across both Shorts Roundup videos, the Unique Reach metric — the single feature with direct brand deal income implications — is positioned mid-video while lower-stakes features like Live Countdown Stickers and Account Status lead. The 22x view gap between the two roundup videos (1.68M vs 75K) correlates directly with title positioning: the higher-performing video front-loads &#x27;Unique Reach&#x27; in the title while the lower-performing version buries it under &#x27;and more!&#x27; This pattern repeats in the Brand Deal Desk series, where the most monetarily impactful content (exclusivity, usage rights, negotiation tactics) arrives late or is obscured by introductory framing.</div>
+        <div class="insight-action">
+          <div class="action-label">→ Do This</div>
+          <div class="action-text">Audit every upcoming video script and place the single highest-income-impact feature or insight in the first 30 seconds and first title position — if a feature touches creator earnings, brand deals, or monetization, it leads, always.</div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-priority priority-high">🔴 Fix This</span>
+        </div>
+        <div class="insight-headline">Every Tutorial Describes the Payoff But Never Shows It — Demo the Output Before the Steps</div>
+        <div class="insight-body">Five of the eight videos — Ask Studio, Shorts Remix, Old Soul vs New Gen, Let&#x27;s Go to the Mall, and Get Creative with Shorts Remix — walk viewers through a process without first showing the finished result. The Old Soul vs New Gen tutorial (6,471 views) opens with panel navigation instead of the completed interactive slider in action. The Shorts Remix Short (131K views) ends on &#x27;wildest ideas come to life&#x27; without ever showing a completed Reimagined Short. Ask Studio never shows actual AI output on screen. Viewers have no aspirational anchor to justify their watch time, and without a visual payoff established upfront, retention curves drop before the tutorial value is ever delivered.</div>
+        <div class="insight-action">
+          <div class="action-label">→ Do This</div>
+          <div class="action-text">For every tutorial and feature explainer going forward, shoot a 5-10 second &#x27;finished result&#x27; clip first and place it as the cold open before any introduction, host name, or step-by-step instruction begins.</div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-priority priority-high">🔴 Fix This</span>
+        </div>
+        <div class="insight-headline">Series Branding Is Killing Cold Traffic — Titles Serve Existing Fans While Ignoring Discovery</div>
+        <div class="insight-body">Both Brand Deal Desk videos (&#x27;Welcome to THE BRAND DEAL DESK&#x27; at 11,988 views and &#x27;THE BRAND DEAL DESK: The Brand Deal Universe&#x27; at 4,878 views) use series-name-first titling that communicates zero specific value to a viewer encountering them for the first time. The Old Soul vs New Gen tutorial omits &#x27;Effect Maker&#x27; from the title entirely, cutting off search traffic from the tool&#x27;s own user base. Across these three videos, series or brand identity is prioritized over the specific outcome a cold viewer would search for, and all three are the lowest-performing videos in the dataset.</div>
+        <div class="insight-action">
+          <div class="action-label">→ Do This</div>
+          <div class="action-text">Rewrite all series video titles to lead with the specific skill, outcome, or pain point being addressed — place the series name as a suffix or in the description, not the headline (e.g., &#x27;How Brands Actually Choose Creators | Brand Deal Desk Ep. 1&#x27; instead of &#x27;THE BRAND DEAL DESK: The Brand Deal Universe&#x27;).</div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-priority priority-win">🟢 Keep Doing</span>
+        </div>
+        <div class="insight-headline">Concrete Comparative Examples Are the Highest-Retention Moments — Systematize Them</div>
+        <div class="insight-body">The single most praised element across multiple video analyses is the specific comparative example technique: the &#x27;10 million Unique Reach vs 8 million views&#x27; explanation in both Roundup videos, the &#x27;tell me more about my channel&#x27; vs &#x27;What are the common themes in comments on my Crochet for Beginners video?&#x27; contrast in Ask Studio, and the &#x27;X bounds range of 202 vs 600&#x27; live demonstration in the Old Soul tutorial. Every analysis flagged these moments as the strongest retention and rewatch drivers in their respective videos. This technique consistently outperforms abstract explanations and generic value statements across both short and long-form formats.</div>
+        <div class="insight-action">
+          <div class="action-label">→ Do This</div>
+          <div class="action-text">Mandate that every feature explanation in every video includes at least one named before/after comparison using real numbers, real prompt text, or real on-screen value changes — write it into the scripting brief as a non-negotiable requirement, not an optional enhancement.</div>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-priority priority-medium">🟡 Opportunity</span>
+        </div>
+        <div class="insight-headline">Localized Afrikaans Content Has a Hard Reach Ceiling on Features with Global Demand</div>
+        <div class="insight-body">The Shorts Remix tutorial in Afrikaans reached 131K views — notable but a fraction of what the same tutorial achieved in the English-language Roundup (1.68M views covering overlapping content). The Old Soul vs New Gen tutorial and both Brand Deal Desk episodes show similar patterns where language localization limits algorithmic distribution for features that have global creator relevance. The Get Creative with Shorts Remix analysis explicitly flags that an English version could achieve 10-50x the reach given the feature&#x27;s global applicability.</div>
+        <div class="insight-action">
+          <div class="action-label">→ Do This</div>
+          <div class="action-text">For every feature with global creator relevance (AI tools, monetization, analytics, brand deals), produce the primary English-language version first and publish localized versions as separate uploads — do not make the localized version the only or primary distribution vehicle for high-demand content.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== VIDEO DEEP DIVES ===== -->
+    <div class="report-section">
+      <div class="section-header">
+        <h2>🎬 Content Deep Dives</h2>
+        <span class="section-count">8 videos analyzed</span>
+      </div>
+
+      
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi/HwxUp4EWTDw/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AG2CIACgA-KAgwIABABGFAgRChlMA8=&amp;rs=AOn4CLAi3TvgcYdVhiPlkNwbMHR6q_Aiow" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">Update to YouTube Shorts Remix, NEW Live Countdown Sticker and more! #shortsroundup</div>
+            <div class="video-card-meta">
+              <span>Long-form · 2:58</span>
+              <span>75.8K views</span>
+              <span>2026-05-30</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;Update to YouTube Shorts Remix, NEW Live Countdown Sticker and more! #shortsroundup&#x27; front-loads &#x27;Shorts Remix&#x27; — a specific, curiosity-triggering feature name — which is the strongest element. &#x27;NEW Live Countdown Sticker&#x27; adds a concrete, tangible deliverable. However, &#x27;and more!&#x27; is weak filler that dilutes specificity. The hashtag &#x27;#shortsroundup&#x27; is useful for discoverability within the Shorts ecosystem but adds no emotional pull. The title would be stronger if &#x27;Unique Reach&#x27; — arguably the most monetarily impactful feature mentioned (directly tied to brand deal negotiations) — was elevated instead of buried under &#x27;and more.&#x27;</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Replace the generic &#x27;and more!&#x27; in the title with the Unique Reach benefit: e.g., &#x27;Update to YouTube Shorts Remix, NEW Metric to Win Brand Deals &amp; Live Countdown Sticker&#x27; — this surfaces the hidden value that is currently buried mid-video.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The transcript opens immediately with &#x27;Hier is hierdie maand se YouTube Kortvideo&#x27;s-opsomming&#x27; (Afrikaans: &#x27;Here is this month&#x27;s YouTube Shorts roundup&#x27;) — a declarative, low-energy opener that announces the format rather than selling it. There is no pattern interrupt, no bold claim, and no reason given in the first 10 seconds why the viewer should care about THIS month&#x27;s updates specifically. The Live Countdown Sticker demo begins almost immediately with step-by-step instructions, which is functional but not emotionally engaging. For a 178-second video, losing viewers in the first 15 seconds to a dry opener is a significant risk, particularly since the most creator-impactful announcement — Unique Reach as a brand deal tool — doesn&#x27;t appear until midway through.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Reorder the feature sequence to lead with &#x27;Unique Reach&#x27; instead of the Live Countdown Sticker — the pitch &#x27;a metric that helps you make the case for brand deals&#x27; is the most financially relevant hook for creator-focused viewers and would dramatically improve early retention by speaking directly to creator income anxiety.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video follows a classic YouTube product update format — a sequential feature showcase structured as a monthly &#x27;roundup.&#x27; The narrative moves linearly through distinct product announcements: Live Countdown Stickers → Unique Reach metric → Gifts &amp; Gems expansion → Account Status page. Each segment appears to be demo-driven, showing the feature in action (e.g., step-by-step instructions for adding a countdown sticker by tapping, choosing color, setting duration). This modular structure works well for retention in theory, but at 178 seconds it risks feeling like a corporate changelog rather than a compelling story. There is no overarching narrative thread or tension connecting the features — each segment resets the viewer&#x27;s emotional engagement from zero.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Cannot assess the thumbnail image directly, but given the title references &#x27;YouTube Shorts Remix&#x27; as the lead hook and the video achieved 75,796 views, the thumbnail likely leaned on YouTube branding or a feature visual. The risk here is that official YouTube channel roundup videos benefit from platform authority rather than thumbnail craftsmanship — meaning this view count may be channel-driven, not thumbnail-driven. A creator replicating this format without that authority would likely underperform without a stronger visual hook centered on the most surprising announcement.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi_webp/g0dIRjd53K4/maxresdefault.webp" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">Unique Reach, Live Countdown Stickers, Updates to Shorts Remix &amp; more | Creator Roundup</div>
+            <div class="video-card-meta">
+              <span>Long-form · 3:25</span>
+              <span>1.7M views</span>
+              <span>2026-05-30</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;Unique Reach, Live Countdown Stickers, Updates to Shorts Remix &amp; more | Creator Roundup&#x27; is informationally dense but curiosity-light. It functions as a feature index rather than a value proposition. &#x27;Unique Reach&#x27; is placed first, suggesting it was considered the highest-value hook — smart positioning since it directly impacts how creators measure their own success. However, the title does not frame any of these features in terms of creator benefit or outcome. A missed opportunity: none of the features are framed with &#x27;why it matters to you.&#x27; The &#x27;Creator Roundup&#x27; suffix provides series recognition value for returning viewers but adds no new information for discovery.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Add a 5-second cold open that previews the most visually striking feature (likely the Shorts Remix AI generation) before the title card — this pattern-interrupts the expected roundup format and gives algorithm-driven discovery viewers a reason to stay before the branded intro hits.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The hook opens with &#x27;Hey creators, here&#x27;s this month&#x27;s creator roundup&#x27; — a zero-tension, purely transactional opener. There is no problem statement, no surprising statistic, no emotional hook, and no pattern interrupt. The immediate pivot to Account Status as the first feature is a strategic mismatch: account health monitoring is a defensive, anxiety-adjacent feature that lacks excitement. A viewer who came for Shorts Remix updates or Unique Reach data is forced to sit through account status before reaching more compelling content. The first 30 seconds likely see the highest drop-off precisely because the most utilitarian feature leads. Shorts Remix or Unique Reach should have opened the video.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Reorder the feature sequence to open with Unique Reach — framing it as &#x27;you&#x27;ve been measuring your audience wrong&#x27; creates an immediate stakes-based hook that the current &#x27;Hey creators&#x27; opener completely lacks, and it directly ties to creators&#x27; core obsession with reach and growth metrics.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video follows a linear product-announcement structure, moving sequentially through four distinct features: Account Status page, Live Countdown Stickers, Shorts Remix &#x27;Reimagine&#x27; update, and Unique Reach metric. Each segment appears to follow a demo-then-explain pattern, which is appropriate for a tutorial-style roundup. However, the narrative lacks a connective throughline — there is no overarching story or tension that ties these features together. It reads as a changelog rather than a story. The pacing at 205 seconds for four features averages roughly 50 seconds per feature, which is tight but functional. The strongest storytelling moment is the Shorts Remix segment, where the phrase &#x27;Your imagination takes centre stage&#x27; attempts an emotional lift before pivoting back to mechanical steps.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Without direct thumbnail image access, the title string &#x27;Unique Reach, Live Countdown Stickers, Updates to Shorts Remix &amp; more&#x27; strongly implies the thumbnail likely uses a feature collage or grid layout — a common YouTube Studio communication pattern. This approach creates a high-information but low-curiosity thumbnail. Listing features visually signals utility but not urgency or intrigue. The &#x27;&amp; more&#x27; framing in the title suggests the thumbnail may tease one hero feature prominently. For a video achieving 1.68M views on what is essentially internal platform communication, the brand authority of the YouTube channel itself is likely the primary click driver rather than thumbnail craft.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi/IliDySp8fDI/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AG2CIACgA-KAgwIABABGH8gEyglMA8=&amp;rs=AOn4CLCLjesds8UicUI2pIHNEzfIth5s1w" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">Welcome to THE BRAND DEAL DESK</div>
+            <div class="video-card-meta">
+              <span>Long-form · 1:03</span>
+              <span>12.0K views</span>
+              <span>2026-05-28</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;Welcome to THE BRAND DEAL DESK&#x27; frontloads &#x27;Welcome to&#x27; which is passive and weak as an entry point — it positions this as an introduction rather than a destination. &#x27;THE BRAND DEAL DESK&#x27; as a proper noun creates mild brand intrigue but offers zero promise of transformation or specific outcome. A title like &#x27;How Top Creators Negotiate Brand Deals (5-Part Series)&#x27; would likely outperform it significantly on search and browse. The current title serves existing fans of the series concept but fails to pull in cold audiences searching for brand deal advice.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Add a specific numerical hook to the title and thumbnail to drive click-through — for example, &#x27;5 Brand Deal Mistakes Costing You Money&#x27; tied to the five-part series structure, which transforms the series from a passive &#x27;welcome&#x27; into an active problem-solving destination.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The opening line &#x27;Hey guys, go grab your coffee or your matcha because things are about to get very real&#x27; is a classic hype-opener that has become heavily diluted across YouTube. It delays actual value delivery by approximately 8-10 seconds. The pivot to &#x27;if you want real brand deals, this is where you&#x27;ve got to start&#x27; is the first moment of genuine value proposition, but it arrives late for a 63-second video. For a trailer this short, the hook needed to land within the first 5 seconds with a specific, provocative claim — for example, opening with Aaron White&#x27;s line about exclusivity and usage rights would have been far more arresting for the target audience.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Recut the trailer to open with the most provocative content snippet first — specifically Aaron White&#x27;s &#x27;Exclusivity, usage rights, extra social posts, all have value&#x27; line, as it immediately signals tactical, monetizable knowledge that stops scrollers who are actively trying to improve brand deal terms.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video uses a multi-host ensemble format to establish credibility through diversity of creator archetypes — Max Foch (entertainer), Grace Andrews (entrepreneur), and Aaron White (business educator). The narrative unfolds as a series teaser rather than a standalone piece, functioning more like a TV show trailer. The structural choice to intercut quick character introductions with value-snippet soundbites (&#x27;Exclusivity, usage rights, extra social posts, all have value&#x27;) mirrors a Netflix series cold open, which is intentional but risks feeling corporate-produced rather than creator-authentic. The 63-second runtime signals this is purely a series launch trailer, not an educational video, which limits organic discovery value.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Without direct thumbnail visibility, the title &#x27;THE BRAND DEAL DESK&#x27; suggests the thumbnail likely leans into a professional desk/office aesthetic or features all three hosts. The all-caps branding is strong for authority signaling, but the phrase &#x27;Brand Deal Desk&#x27; is industry-insider language that may underperform with mid-tier creators who don&#x27;t yet identify as &#x27;brand deal&#x27; negotiators. The 11,988 views for a YouTube-official series suggests the thumbnail is not compelling enough to drive curiosity clicks beyond the core monetization-focused creator audience.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Add a specific numerical hook to the title and thumbnail to drive click-through — for example, &#x27;5 Brand Deal Mistakes Costing You Money&#x27; tied to the five-part series structure, which transforms the series from a passive &#x27;welcome&#x27; into an active problem-solving destination.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi_webp/V-D5wumXO8Y/maxresdefault.webp" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">NEW: Ask Studio</div>
+            <div class="video-card-meta">
+              <span>Long-form · 1:44</span>
+              <span>55.4K views</span>
+              <span>2026-05-28</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;NEW: Ask Studio&#x27; is functional but underperforms on curiosity and value communication. &#x27;NEW&#x27; creates mild urgency but does not specify what is new or why it matters to the viewer. &#x27;Ask Studio&#x27; means nothing to someone unfamiliar with the feature — it does not communicate the benefit (e.g., &#x27;AI analyzes your channel for you&#x27;). A stronger title would be something like &#x27;Ask Studio: YouTube&#x27;s New AI That Analyzes Your Channel Data For You&#x27; — directly naming the viewer benefit and the AI angle, which is a high-interest topic.</div>
+            
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The opening line — &#x27;Het jy hulp nodig om jou kanaal se data te ontleed?&#x27; (Do you need help analyzing your channel&#x27;s data?) — is a direct problem-addressing question, which is a solid hook technique. However, it immediately pivots into feature explanation (&#x27;Go to Ask Studio, an AI creative partner within YouTube Studio&#x27;) without building any emotional tension or demonstrating the pain point viscerally. Within the first 15 seconds, the video is already in tutorial mode. For a 104-second video this is acceptable, but there is no pattern interrupt or visual surprise to stop a scrolling viewer. The hook relies entirely on the viewer already caring about channel analytics.</div>
+            
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video follows a linear tutorial structure: problem (need to analyze channel data) → solution (Ask Studio) → how to access it → how to use it → tips for effectiveness. The narrative is tightly compressed into 104 seconds, which suits an official YouTube product explainer. However, the storytelling is purely functional — it reads as a scripted product walkthrough rather than a story with tension or transformation. There is no before/after contrast showing a creator struggling without Ask Studio versus thriving with it. The structure is logical but emotionally flat, relying entirely on utility rather than narrative engagement.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">No thumbnail image was provided for direct analysis, but given the title &#x27;NEW: Ask Studio&#x27; and the official YouTube Studio branding context, the thumbnail likely leans on product UI screenshots or the YouTube Studio interface. The word &#x27;NEW&#x27; in the title suggests it may appear on the thumbnail as a badge or callout. For an official YouTube channel, this likely performs adequately due to brand trust, but for independent creators covering this topic, a thumbnail showing the actual Ask Studio chat interface with a compelling question like &#x27;What is killing my channel?&#x27; would dramatically outperform a generic UI screenshot.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi/U1-ZH6NVQiQ/maxresdefault.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYVyBkKGUwDw==&amp;rs=AOn4CLAobXdHjoDjV7lHCmeyIVSQK2_YLA" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">Let&#x27;s go to the mall! with @KevinStratvert</div>
+            <div class="video-card-meta">
+              <span>Short · 0:44</span>
+              <span>32.9K views</span>
+              <span>2026-05-27</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">&quot;Let&#x27;s go to the mall! with @KevinStratvert&quot; is a significant mismatch with the actual content. The video is a tutorial-demo hybrid for YouTube&#x27;s Effect Maker tool using AI photo-real transformations. The title references neither the core value proposition (create AI 90s effects on YouTube Shorts) nor the tool being demonstrated. The mall reference appears to be a 90s cultural nod but reads as cryptic without context. A viewer searching for YouTube Shorts effects or AI tools would never find this video based on this title. The collaboration tag with @KevinStratvert is the only trust signal present.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Retitle the video to something like &#x27;I used YouTube&#x27;s new AI effect to go back to 1994&#x27; — this communicates the transformation, the tool, and the era without being cryptic, and targets search intent around YouTube&#x27;s new AI features</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The opening line &#x27;I was just looking at some old photos from the 90s and it gave me an idea for an effect&#x27; is a strong conversational hook that feels organic rather than scripted. It creates immediate curiosity about what the effect is. However, the transition into the tool name &#x27;Nano Banana 2&#x27; and the URL &#x27;effects.youtube.com&#x27; arrives at roughly the 8-10 second mark and introduces friction — it&#x27;s product information before the payoff has been demonstrated. Showing the finished 90s transformation first, then explaining how to recreate it, would likely increase completion rates on this short.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Restructure the hook to show the most embarrassing/funny transformation (the boy band look) in the first 3 seconds before any explanation — start with the payoff to stop the scroll, then explain how to recreate it</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video uses a before/after transformation structure that works well for a 44-second short. It opens with a personal, relatable hook (&#x27;looking at old photos from the 90s&#x27;), immediately establishes stakes (demonstrating a new YouTube tool), and delivers three escalating payoff moments: the 1994 look, the 90s haircut, and the boy band transformation. The self-deprecating &#x27;I&#x27;m embarrassed to say this&#x27; before the boy band reveal adds personality and builds micro-tension. The structure is tight but the actual UI walkthrough (effects.youtube.com, selecting the AI photo real template) is sandwiched awkwardly between the personal hook and the transformations, creating a slight pacing disruption.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Cannot assess the thumbnail directly without seeing it, but given the 90s transformation premise, the most click-worthy thumbnail would feature a side-by-side of Kevin&#x27;s modern vs. 90s AI-generated look. If the thumbnail doesn&#x27;t show the dramatic visual transformation result, it is leaving significant CTR on the table. The mall reference in the title suggests a &#x27;Mall Rat&#x27; 90s aesthetic was likely used visually, which could be compelling if the AI result is visually striking enough to stop the scroll.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi_webp/DSM5uHof9lQ/maxresdefault.webp" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">THE BRAND DEAL DESK: The Brand Deal Universe</div>
+            <div class="video-card-meta">
+              <span>Long-form · 8:56</span>
+              <span>4.9K views</span>
+              <span>2026-05-26</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title is structurally weak for discoverability. &#x27;THE BRAND DEAL DESK: The Brand Deal Universe&#x27; is series-first rather than value-first. The phrase &#x27;Brand Deal Universe&#x27; is conceptually interesting but abstract — it does not immediately answer &#x27;what will I learn?&#x27; A viewer unfamiliar with the series has no clear reason to click. The colon format prioritizes branding over curiosity or benefit. Compared to high-performing creator economy titles like &#x27;How I Negotiated My First Brand Deal&#x27; or &#x27;What Brands Actually Want From Creators,&#x27; this title misses the opportunity to lead with a specific promise or pain point.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Retitle the episode to front-load the specific concept being taught: &#x27;The Brand Deal Universe: How Brands Actually Choose Creators (Step 1)&#x27; — this preserves series branding while adding searchable, benefit-driven language that works for both subscribers and cold traffic.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The hook has significant structural problems. The opening line &#x27;Wat gaan aan, mooi mense? Ek is in Londen en ek is so opgewonde&#x27; (What&#x27;s going on, beautiful people? I am in London and I am so excited) delays value delivery with a location check-in and emotional setup rather than immediately stating what the viewer will gain. The three-host introduction sequence — where each person states their name and role — adds further delay before the actual content begins. The emotional anecdote about the first brand deal (the dating app story) is charming but arrives too late to serve as a true hook. The strongest line in the transcript — &#x27;jy is nie alleen nie&#x27; (you are not alone) — which directly addresses creator anxiety, appears buried mid-intro rather than at the very top.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Restructure the opening 30 seconds to lead with the creator pain point directly — replace the London location check-in with a line like &#x27;Every creator has wondered how to actually land brand deals without underselling themselves — here is the complete framework&#x27; before any host introductions begin.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video uses a multi-host panel format with three distinct creator personas (Erin White as business-focused, Max Fosh as comedian/entertainer, Grace Andrews as entrepreneur), which creates natural conversational energy. The narrative structure follows a deliberate &#x27;universe&#x27; metaphor — positioning brand deals as an ecosystem with the creator and brand as separate planets. The use of a visual explainer segment (&#x27;The Brand Deal Universe&#x27;) suggests whiteboard or animated breakdowns are embedded mid-video, which aids comprehension for educational content. The Afrikaans language delivery (likely South African audience targeting) combined with a London setting creates an interesting geographic duality that may resonate with international creator communities but could limit algorithmic reach in non-Afrikaans markets.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Without seeing the thumbnail directly, the title &#x27;THE BRAND DEAL DESK: The Brand Deal Universe&#x27; suggests a series format thumbnail likely featuring all three hosts in a studio or desk setup. The series branding (&#x27;THE BRAND DEAL DESK&#x27;) implies a recurring show format, which means the thumbnail likely relies on series recognition rather than standalone curiosity — a potential weakness for discoverability to new viewers. 4,878 views suggests the thumbnail is not aggressively driving cold clicks, meaning it likely lacks a strong visual hook or tension element that would stop a non-subscriber mid-scroll.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi/nKdKq4NX1tg/maxresdefault.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4AbYIgAKAD4oCDAgAEAEYfyAWKHswDw==&amp;rs=AOn4CLB-t6CEGdiCh7d5JKHp5wauMdG0ew" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">Get Creative with YouTube Shorts Remix 🪄</div>
+            <div class="video-card-meta">
+              <span>Short · 0:36</span>
+              <span>131.0K views</span>
+              <span>2026-05-19</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;Get Creative with YouTube Shorts Remix 🪄&#x27; is functional but weak on curiosity. It communicates the topic (Shorts Remix) and a vague benefit (get creative) but fails to answer &#x27;why should I care right now?&#x27; There is no specificity about the &#x27;Reimagine&#x27; sub-feature, no urgency, and no outcome promise. A title like &#x27;YouTube Just Let AI Reimagine Any Short 🪄 Here&#x27;s How&#x27; would drive significantly more clicks by naming the mechanism and implying novelty.</div>
+            
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The opening line in Afrikaans translates to &#x27;Your imagination is the most important with our latest update of Shorts Remix&#x27; — this is a soft, brand-speak hook that does not create tension or immediate curiosity. It opens with a value statement rather than a demonstration or provocative question. For a 36-second Short, the first 3 seconds are critical and this hook wastes them on a corporate-sounding sentence. Viewers who don&#x27;t immediately see hands-on action are likely swiping away before the step-by-step begins.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Rewrite the opening hook to start with the action, not the brand message — begin with &#x27;Tik op hermeng&#x27; (tap remix) immediately on screen with a surprising before/after, forcing curiosity within the first 2 seconds rather than leading with &#x27;your imagination is important.&#x27;</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video follows a tight step-by-step tutorial structure, walking viewers through the YouTube Shorts Remix &#x27;Reimagine&#x27; feature in sequential order: tap remix icon → choose Reimagine → type idea or swipe for suggestions → add reference photo → preview → edit/publish. The narrative is purely instructional and linear, which suits a 36-second format. However, the storytelling lacks a compelling outcome moment — there is no before/after reveal or finished Reimagined Short shown, which means viewers never see the payoff of following the steps. The Afrikaans-language delivery suggests this is a localized version of an official YouTube tutorial, likely produced by YouTube Africa, limiting its organic discovery potential.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Without direct thumbnail visibility, the title and emoji (&#x27;🪄&#x27;) suggest a visually playful thumbnail likely using YouTube&#x27;s brand colors and the magic wand emoji as a visual metaphor for creative transformation. For a 131K-view Short, the thumbnail performed adequately, but the &#x27;Get Creative&#x27; framing is benefit-vague — it doesn&#x27;t show WHAT gets created or WHO benefits. A thumbnail showing a split-screen of a plain idea transforming into a finished Short would outperform a generic branded visual.</div>
+            
+          </div>
+        </div>
+      </details>
+
+      <details class="video-card">
+        <summary class="video-card-header">
+          <img class="video-thumb" src="https://i.ytimg.com/vi_webp/ghsVOck_qls/maxresdefault.webp" alt="" onerror="this.style.display='none'">
+          <div class="video-card-info">
+            <div class="video-card-title">HOW TO: Create an Old Soul vs New Gen Slider Effect with @royer.louise</div>
+            <div class="video-card-meta">
+              <span>Long-form · 13:19</span>
+              <span>6.5K views</span>
+              <span>2026-05-14</span>
+            </div>
+            <div class="video-card-verdict verdict-improve">
+              Mixed results
+            </div>
+          </div>
+          <div class="video-expand-icon">▼</div>
+        </summary>
+        <div class="video-deep-dive">
+          
+          <div class="dive-section">
+            <div class="dive-label">🏷️ Title Analysis</div>
+            <div class="dive-content">The title &#x27;HOW TO: Create an Old Soul vs New Gen Slider Effect with @royer.louise&#x27; does several things well — it uses a clear &#x27;HOW TO&#x27; format, names a specific trendy effect, and includes a collaborator for social proof. However, &#x27;Effect Maker&#x27; is not mentioned in the title, which means people searching for Effect Maker tutorials may not find it, and people unfamiliar with the platform won&#x27;t know if this applies to them. The &#x27;Old Soul vs New Gen&#x27; framing is culturally timely and curiosity-triggering, but the title misses communicating the broader use case that Liz herself mentions in the first 60 seconds — that this template works for food, drinks, animals, movies — which would dramatically widen the appeal.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Add a chapter titled &#x27;You Can Use This For More Than Generations&#x27; at the 1-2 minute mark that visually shows three alternative use cases (food, animals, movies) with quick mockup screenshots, capitalizing on the broad applicability Liz mentions verbally but likely doesn&#x27;t visualize on screen.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎣 Opening Hook</div>
+            <div class="dive-content">The hook is functionally weak. Liz opens with &#x27;Hi, I&#x27;m Liz Warrior. Today I&#x27;m going to take you through using the old soul vs. new gen effect template in Effect Maker...&#x27; — this is a classic &#x27;preamble&#x27; hook that states intent rather than creating urgency or demonstrating value. There is no visual payoff in the first 30 seconds showing the finished interactive effect, no pattern interrupt, and no articulation of why this specific effect is worth the viewer&#x27;s time. The mention of &#x27;the potential here is huge — food, drink, animals, movies&#x27; appears early and is the strongest hook element, but it arrives after the dry software navigation intro has already begun.</div>
+            
+            <div class="dive-action">
+              <strong>→ Try This</strong>
+              <p>Open the video with a 15-second demo of the finished Old Soul vs New Gen effect being used interactively — show the sliders moving, the hearts animating, the final share screen — before saying a single word of instruction. This creates an aspirational anchor that justifies the 13-minute watch time.</p>
+            </div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🎬 Visual Storytelling</div>
+            <div class="dive-content">The video follows a linear tutorial structure, walking viewers through the Effect Maker template step-by-step: opening the software, navigating the objects panel, understanding category titles, exploring five slider rows, and then diving into the visual scripting logic. The narrative is pedagogically sequenced — interface overview first, then logic layer second — which suits technical learners. However, the storytelling lacks a compelling &#x27;before and after&#x27; moment early on; viewers are not shown the finished, polished effect in action before the tutorial begins, which weakens the motivational arc. The transcript jumps almost immediately into panel navigation without establishing the aspirational end result visually.</div>
+          </div>
+
+          <div class="dive-section">
+            <div class="dive-label">🖼️ Thumbnail & Packaging</div>
+            <div class="dive-content">Without seeing the actual thumbnail image, the video title suggests the thumbnail likely features a split-screen or slider visual comparing &#x27;old soul&#x27; vs &#x27;new gen&#x27; aesthetics. Given only 6,471 views on what appears to be a niche creator-tools tutorial, the thumbnail is likely underperforming at driving broad clicks. The collaboration tag &#x27;@royer.louise&#x27; in the title implies a co-creator may appear in the thumbnail, which could help with credibility but may not convey the interactive slider mechanic clearly enough to non-Effect Maker users scrolling past.</div>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ===== 30/90-DAY STRATEGY ===== -->
+    <div class="report-section">
+      <div class="section-header">
+        <h2>🗺️ Growth Roadmap</h2>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-header">
+          <h2>Your Path Forward</h2>
+          <p>Based on this month's patterns, here's your strategic focus for the next 90 days.</p>
+        </div>
+        <div class="roadmap-timeline">
+          
+          <div class="roadmap-phase">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-phase-label">Next 2 Weeks</div>
+            <h3>Fix the Front Door</h3>
+            <p>Eliminate the immediate conversion killers by rewriting titles and restructuring hooks so cold traffic can understand and click before a single frame of content plays.</p>
+            <div class="roadmap-actions">
+              <div class="roadmap-action-item">Audit and rewrite all live series video titles (Brand Deal Desk, Old Soul vs New Gen) to lead with the specific outcome or pain point — move series names to a suffix or the description, and A/B test the new titles using YouTube&#x27;s built-in title testing tool within 48 hours of going live.</div>
+<div class="roadmap-action-item">Record a 5-10 second &#x27;finished result&#x27; cold open for the next two scheduled tutorial or feature explainer videos and cut it into the existing edit before publish — treat it as a non-negotiable pre-production checklist item starting immediately.</div>
+<div class="roadmap-action-item">Identify the single highest-income-impact feature in every video currently in the production pipeline and confirm it appears in the first 30 seconds of the script and the first keyword position of the title before the video is locked for upload.</div>
+            </div>
+          </div>
+
+          <div class="roadmap-phase">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-phase-label">Next 30 Days</div>
+            <h3>Build the System</h3>
+            <p>Institutionalize the patterns that drove the highest-performing content into repeatable production standards so every video launches with optimized structure by default, not by exception.</p>
+            <div class="roadmap-actions">
+              <div class="roadmap-action-item">Create a mandatory scripting brief template that includes three locked fields — (1) the money-first hook with the income-impact feature named in the first line, (2) the finished-result cold open shot description, and (3) at least one concrete before/after comparison using real numbers or real on-screen values — and require sign-off on all three before any script advances to production.</div>
+<div class="roadmap-action-item">Establish an English-first publishing policy for all globally relevant content (AI tools, monetization, analytics, brand deals): produce and publish the primary English-language version first, then upload localized versions as separate videos with their own titles and thumbnails optimized for each language&#x27;s search behavior.</div>
+<div class="roadmap-action-item">Conduct a full channel title audit across the 20 most recent uploads, score each title for cold-traffic clarity on a simple three-point rubric (specific outcome visible, series name deprioritized, monetization keywords surfaced), and document a rewrite for any title scoring below two points to apply learnings forward.</div>
+            </div>
+          </div>
+
+          <div class="roadmap-phase">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-phase-label">Next 90 Days</div>
+            <h3>Compound the Advantage</h3>
+            <p>Shift the channel&#x27;s content architecture so that discovery, retention, and monetization relevance are structurally embedded across every series, format, and language strategy — making growth the default outcome rather than a result of one-off optimizations.</p>
+            <div class="roadmap-actions">
+              <div class="roadmap-action-item">Redesign the Brand Deal Desk series as a discovery-first franchise: relaunch with episode titles that each target a standalone high-volume creator search query (e.g., &#x27;How to Negotiate Usage Rights with Brands,&#x27; &#x27;What Exclusivity Clauses Actually Cost You&#x27;), build a series landing playlist with a keyword-optimized description, and use each episode&#x27;s end screen to funnel viewers to the next highest-monetization-relevance episode rather than the chronological next episode.</div>
+<div class="roadmap-action-item">Systematize the concrete comparative example technique across all content by building a reusable &#x27;comparison asset library&#x27; — a shared doc of real numbers, real prompt contrasts, and real on-screen value changes from past videos that writers can pull from when scripting new feature explainers, ensuring every video ships with at least one named before/after moment without requiring original research every time.</div>
+<div class="roadmap-action-item">Develop a 90-day localization content calendar that maps every planned high-demand feature video (AI, monetization, analytics) to a primary English upload date and a secondary localized upload window 7-14 days later — track Unique Reach, click-through rate, and average view duration separately for each language version to build a data-backed case for which topics and formats justify ongoing localization investment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ACTION CHECKLIST ===== -->
+    <div class="checklist">
+      <h2>✅ This Month's Action Checklist</h2>
+      
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>Audit every upcoming video script and place the single highest-income-impact feature or insight in the first 30 seconds and first title position — if a feature touches creator earnings, brand deals, or monetization, it leads, always.</strong>
+          <span>The Most Valuable Feature Is Buried in Every Video — Reorder for Money-First Hooks</span>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>For every tutorial and feature explainer going forward, shoot a 5-10 second &#x27;finished result&#x27; clip first and place it as the cold open before any introduction, host name, or step-by-step instruction begins.</strong>
+          <span>Every Tutorial Describes the Payoff But Never Shows It — Demo the Output Before the Steps</span>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>Rewrite all series video titles to lead with the specific skill, outcome, or pain point being addressed — place the series name as a suffix or in the description, not the headline (e.g., &#x27;How Brands Actually Choose Creators | Brand Deal Desk Ep. 1&#x27; instead of &#x27;THE BRAND DEAL DESK: The Brand Deal Universe&#x27;).</strong>
+          <span>Series Branding Is Killing Cold Traffic — Titles Serve Existing Fans While Ignoring Discovery</span>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>Mandate that every feature explanation in every video includes at least one named before/after comparison using real numbers, real prompt text, or real on-screen value changes — write it into the scripting brief as a non-negotiable requirement, not an optional enhancement.</strong>
+          <span>Concrete Comparative Examples Are the Highest-Retention Moments — Systematize Them</span>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>Audit and rewrite all live series video titles (Brand Deal Desk, Old Soul vs New Gen) to lead with the specific outcome or pain point — move series names to a suffix or the description, and A/B test the new titles using YouTube&#x27;s built-in title testing tool within 48 hours of going live.</strong>
+          <span>Fix the Front Door</span>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div class="checklist-text">
+          <strong>Record a 5-10 second &#x27;finished result&#x27; cold open for the next two scheduled tutorial or feature explainer videos and cut it into the existing edit before publish — treat it as a non-negotiable pre-production checklist item starting immediately.</strong>
+          <span>Fix the Front Door</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="report-footer">
+      <div class="footer-logo">vidIQ</div>
+      <div>May 2026 · YouTube Creators · Prepared by your vidIQ coaching team</div>
+      <div style="margin-top:4px;opacity:0.6">Confidential — for coaching use only</div>
+    </div>
+
+  </div>
+</body>
+</html>
